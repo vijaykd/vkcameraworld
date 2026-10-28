@@ -1,0 +1,1153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Camara | Free Movie & Video Creation Studio (No Watermarks)</title>
+  <meta name="description" content="Create cinematic movies, short films, trailers, and viral videos completely free. AI storyboard generation, multi-track timeline editor, 4K export with zero watermarks.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles/main.css">
+</head>
+<body class="bg-dark text-light antialiased">
+  
+  <!-- Navigation Header -->
+  <header class="site-header">
+    <div class="nav-container">
+      <a href="#" class="brand-logo">
+        <div class="logo-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polygon points="23 7 16 12 23 17 23 7"></polygon>
+            <rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect>
+          </svg>
+        </div>
+        <span class="logo-text">Camara<span class="logo-badge">FREE</span></span>
+      </a>
+
+      <nav class="nav-links">
+        <a href="#studio" class="nav-link active">Online Studio</a>
+        <a href="#features" class="nav-link">Features</a>
+        <a href="#templates" class="nav-link">Templates</a>
+        <a href="#audio-lab" class="nav-link">Royalty-Free Audio</a>
+        <a href="#faq" class="nav-link">FAQ</a>
+      </nav>
+
+      <div class="header-actions">
+        <a href="#studio" class="btn btn-primary pulse-btn">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+            <polygon points="5 3 19 12 5 21 5 3"></polygon>
+          </svg>
+          Open Free Studio
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <div class="hero-glow hero-glow-1"></div>
+    <div class="hero-glow hero-glow-2"></div>
+    
+    <div class="hero-container">
+      <div class="badge-pill">
+        <span class="badge-dot"></span>
+        <span>100% Free AI Movie & Video Maker &bull; Zero Watermarks &bull; Autonomous AI Director</span>
+      </div>
+
+      <h1 class="hero-title">
+        The Free Video Studio <span class="gradient-text">With A Mind Of Its Own.</span>
+      </h1>
+
+      <p class="hero-subtitle">
+        Sit back and watch the AI direct, choreograph, score, and animate cinematic movies completely on its own. 
+        You don't have to do anything — or type a prompt whenever you want to steer the story.
+      </p>
+
+      <!-- Prominent AI Prompt-to-Movie Generator Box -->
+      <div class="hero-prompt-card">
+        <div class="prompt-card-header">
+          <div class="prompt-status-label">
+            <span class="sparkle-icon">✨</span>
+            <span>AI DIRECT-TO-SCREEN PROMPT ENGINE</span>
+          </div>
+          <button type="button" class="btn-surprise" id="hero-surprise-btn" title="Get an inspiring random movie prompt">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"></rect><circle cx="8" cy="8" r="1.5"></circle><circle cx="16" cy="8" r="1.5"></circle><circle cx="8" cy="16" r="1.5"></circle><circle cx="16" cy="16" r="1.5"></circle><circle cx="12" cy="12" r="1.5"></circle></svg>
+            Surprise Me
+          </button>
+        </div>
+
+        <div class="prompt-input-wrapper">
+          <textarea id="hero-prompt-input" rows="2" placeholder="Describe the movie or video you want to make... (e.g., 'Samurai standing in raining bamboo forest under thunder and falling cherry blossom petals' or 'Cyberpunk police chase through neon Tokyo rooftops')"></textarea>
+          
+          <button class="btn btn-hero-generate pulse-btn" id="hero-generate-btn">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"></path>
+            </svg>
+            <span>Make My Movie</span>
+          </button>
+        </div>
+
+        <!-- Inspiring Quick Prompt Inspiration Chips -->
+        <div class="hero-prompt-chips">
+          <span class="chips-label">Popular Prompts:</span>
+          <button class="prompt-chip" data-prompt="Samurai master standing in bamboo forest under pouring rain, lightning storm, and falling pink cherry blossoms">⚔️ Samurai Storm</button>
+          <button class="prompt-chip" data-prompt="Deep sea exploration submarine diving into Mariana trench encountering giant bioluminescent jellyfish">🌊 Deep Ocean Glow</button>
+          <button class="prompt-chip" data-prompt="Cyberpunk flying car chase through neon skyscrapers of Tokyo 2099 in rain">🌆 Cyberpunk Pursuit</button>
+          <button class="prompt-chip" data-prompt="Astronaut exploring massive purple singularity black hole accretion disk in deep cosmos">🚀 Cosmic Singularity</button>
+          <button class="prompt-chip" data-prompt="Mars rover navigating massive red dust dunes under twin alien moons at sunset">🏜️ Mars Expedition</button>
+          <button class="prompt-chip" data-prompt="Medieval fantasy fortress siege with flaming trebuchet fireballs and dragon in smoky skies">🏰 Fantasy Fortress</button>
+          <button class="prompt-chip" data-prompt="Retro 1980s synthwave sports car driving towards glowing neon horizon sun on wireframe grid">📼 80s Synthwave</button>
+        </div>
+      </div>
+
+      <!-- Quick Highlights Bar -->
+      <div class="hero-stats-row">
+        <div class="stat-pill">
+          <span class="stat-icon">&check;</span>
+          <span>Zero Watermarks</span>
+        </div>
+        <div class="stat-pill">
+          <span class="stat-icon">&check;</span>
+          <span>Instant 1080p / 4K Export</span>
+        </div>
+        <div class="stat-pill">
+          <span class="stat-icon">&check;</span>
+          <span>Real-Time In-Browser AI Engine</span>
+        </div>
+        <div class="stat-pill">
+          <span class="stat-icon">&check;</span>
+          <span>Royalty-Free Commercial Rights</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Interactive Full-Featured Studio App Section -->
+  <section id="studio" class="studio-section">
+    <div class="section-header">
+      <div class="badge-tag">CAMARA WEB SUITE v2.5</div>
+      <h2 class="section-title">The Free Browser Video Studio</h2>
+      <p class="section-desc">Create your scene below: prompt the AI generator, tweak color grades, pick soundtracks, add titles, and export a ready-to-share video right from your browser.</p>
+    </div>
+
+    <!-- The Studio Container -->
+    <div class="studio-app-container">
+      <!-- Studio Top Toolbar -->
+      <div class="studio-toolbar">
+        <div class="studio-project-meta">
+          <div class="rec-indicator" id="rec-dot"></div>
+          <input type="text" id="project-title" class="project-title-input" value="Untitled Cinematic Sci-Fi Project" title="Click to rename project">
+          <span class="project-duration" id="timeline-duration-display">00:08.00 / 00:08.00</span>
+        </div>
+
+        <div class="toolbar-center-controls">
+          <!-- Aspect Ratio Selector -->
+          <div class="aspect-selector">
+            <label>Aspect:</label>
+            <button class="aspect-btn active" data-ratio="16:9" title="16:9 Widescreen (YouTube / Film)">16:9</button>
+            <button class="aspect-btn" data-ratio="9:16" title="9:16 Vertical (TikTok / Reels / Shorts)">9:16</button>
+            <button class="aspect-btn" data-ratio="2.39:1" title="2.39:1 Anamorphic Cinema">2.39:1</button>
+            <button class="aspect-btn" data-ratio="1:1" title="1:1 Square (Instagram)">1:1</button>
+          </div>
+        </div>
+
+        <div class="toolbar-actions">
+          <button class="btn btn-sm btn-outline" id="reset-studio-btn" title="Reset all tracks">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"></path><path d="M3 3v5h5"></path></svg>
+            Reset
+          </button>
+          <button class="btn btn-sm btn-accent" id="export-video-btn" title="Record and download your video as high-quality video">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+            <span id="export-btn-label">Export Video (Free)</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Studio Main Workspace: Left Controls, Center Canvas Preview, Right Asset Drawer -->
+      <div class="studio-workspace">
+        
+        <!-- Left Sidebar: Tools & AI Generator -->
+        <aside class="studio-sidebar">
+          <div class="sidebar-tabs">
+            <button class="tab-btn active" data-tab="ai-prompt">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"></path></svg>
+              AI Scene Gen
+            </button>
+            <button class="tab-btn" data-tab="lut-filter">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><path d="M12 2a10 10 0 0 1 0 20Z"></path></svg>
+              Cinematic LUTs
+            </button>
+            <button class="tab-btn" data-tab="text-overlay">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="4 7 4 4 20 4 20 7"></polyline><line x1="9" y1="20" x2="15" y2="20"></line><line x1="12" y1="4" x2="12" y2="20"></line></svg>
+              Titles & VFX
+            </button>
+            <button class="tab-btn" data-tab="audio-tracks">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18V5l12-2v13"></path><circle cx="6" cy="18" r="3"></circle><circle cx="18" cy="16" r="3"></circle></svg>
+              Audio & Scores
+            </button>
+          </div>
+
+          <div class="sidebar-content">
+            
+            <!-- Tab 1: AI Scene Generator -->
+            <div class="tab-panel active" id="tab-ai-prompt">
+              <div class="panel-header">
+                <h3>AI Movie Scene Generator</h3>
+                <span class="badge-free">UNLIMITED</span>
+              </div>
+              <p class="panel-hint">Describe a scene or movie genre to instantly generate visual cinematography, camera movement, and lighting.</p>
+              
+              <div class="prompt-box">
+                <textarea id="ai-scene-prompt" rows="3" placeholder="e.g., Deep space nebula with starship gliding through asteroid field, cinematic anamorphic glow..."></textarea>
+                <div class="quick-prompts">
+                  <span class="quick-chip" data-prompt="Cyberpunk rain-soaked metropolis with glowing neon signs and flying police spinners">Cyberpunk City</span>
+                  <span class="quick-chip" data-prompt="Epic space voyage approaching a massive glowing accretion disk black hole">Cosmic Black Hole</span>
+                  <span class="quick-chip" data-prompt="Misty Nordic pine forest at dawn with golden sunbeams cutting through fog">Nordic Forest</span>
+                  <span class="quick-chip" data-prompt="Dramatic high-stakes heist countdown in a sleek glass vault">Action Thriller</span>
+                </div>
+                <button class="btn btn-primary btn-block mt-2" id="generate-ai-scene-btn">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg>
+                  Generate Scene Visuals
+                </button>
+              </div>
+
+              <div class="camera-motion-control mt-3">
+                <label>Camera Motion Simulation</label>
+                <select id="camera-motion-select" class="form-select">
+                  <option value="pan-zoom">Slow Cinematic Push-In & Pan</option>
+                  <option value="dolly-zoom">Vertigo Dolly Zoom Effect</option>
+                  <option value="handheld">Organic Handheld Indie Cam</option>
+                  <option value="orbital">Dramatic 360° Orbital Flyby</option>
+                  <option value="static">Static Tripod / Still Frame</option>
+                </select>
+              </div>
+
+              <div class="fx-sliders mt-3">
+                <div class="slider-group">
+                  <div class="slider-label"><span>Film Grain:</span> <span id="grain-val">25%</span></div>
+                  <input type="range" id="grain-slider" min="0" max="100" value="25">
+                </div>
+                <div class="slider-group">
+                  <div class="slider-label"><span>Anamorphic Flare:</span> <span id="flare-val">40%</span></div>
+                  <input type="range" id="flare-slider" min="0" max="100" value="40">
+                </div>
+              </div>
+            </div>
+
+            <!-- Tab 2: Cinematic LUTs & Color Grading -->
+            <div class="tab-panel" id="tab-lut-filter">
+              <div class="panel-header">
+                <h3>Hollywood Color Grading (LUTs)</h3>
+              </div>
+              <p class="panel-hint">Select a color profile to give your video an authentic cinema look in real-time.</p>
+              
+              <div class="lut-grid">
+                <button class="lut-card active" data-lut="teal-orange">
+                  <div class="lut-swatch lut-teal-orange"></div>
+                  <span>Blockbuster (Teal & Orange)</span>
+                </button>
+                <button class="lut-card" data-lut="cyberpunk">
+                  <div class="lut-swatch lut-cyberpunk"></div>
+                  <span>Neon Cyberpunk (Pink & Cyan)</span>
+                </button>
+                <button class="lut-card" data-lut="golden-hour">
+                  <div class="lut-swatch lut-golden-hour"></div>
+                  <span>Golden Hour Sunset</span>
+                </button>
+                <button class="lut-card" data-lut="film-noir">
+                  <div class="lut-swatch lut-film-noir"></div>
+                  <span>Moody Noir (B&W High Contrast)</span>
+                </button>
+                <button class="lut-card" data-lut="sci-fi-matrix">
+                  <div class="lut-swatch lut-sci-fi-matrix"></div>
+                  <span>Dystopian Matrix Green</span>
+                </button>
+                <button class="lut-card" data-lut="vintage-kodak">
+                  <div class="lut-swatch lut-vintage-kodak"></div>
+                  <span>1970s Kodak 35mm Film</span>
+                </button>
+              </div>
+
+              <div class="grading-sliders mt-3">
+                <div class="slider-group">
+                  <div class="slider-label"><span>Contrast:</span> <span id="contrast-val">115%</span></div>
+                  <input type="range" id="contrast-slider" min="70" max="160" value="115">
+                </div>
+                <div class="slider-group">
+                  <div class="slider-label"><span>Saturation:</span> <span id="sat-val">120%</span></div>
+                  <input type="range" id="sat-slider" min="0" max="200" value="120">
+                </div>
+                <div class="slider-group">
+                  <div class="slider-label"><span>Vignette Darkness:</span> <span id="vignette-val">50%</span></div>
+                  <input type="range" id="vignette-slider" min="0" max="100" value="50">
+                </div>
+              </div>
+            </div>
+
+            <!-- Tab 3: Titles, Subtitles & VFX -->
+            <div class="tab-panel" id="tab-text-overlay">
+              <div class="panel-header">
+                <h3>Cinematic Titles & Lower Thirds</h3>
+              </div>
+              <p class="panel-hint">Add animated typography, movie credits, or dialogue subtitles over your scenes.</p>
+              
+              <div class="form-group">
+                <label>Main Title Text:</label>
+                <input type="text" id="title-text-input" class="form-input" value="BEYOND THE HORIZON">
+              </div>
+
+              <div class="form-group">
+                <label>Subtitle / Tagline:</label>
+                <input type="text" id="subtitle-text-input" class="form-input" value="A CAMARA ORIGINAL FILM &bull; IN 4K">
+              </div>
+
+              <div class="form-group">
+                <label>Title Animation Style:</label>
+                <select id="title-style-select" class="form-select">
+                  <option value="epic-fade">Epic Slow Scale & Fade (Interstellar Style)</option>
+                  <option value="glitch">Digital Glitch / Cyberpunk Flash</option>
+                  <option value="minimal">Minimal Modern Sans</option>
+                  <option value="cinema-gold">Classic Cinematic Roman Gold</option>
+                  <option value="none">No Title Overlay</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label>Letterboxing (Cinema Black Bars):</label>
+                <div class="checkbox-row">
+                  <input type="checkbox" id="cinema-bars-toggle" checked>
+                  <label for="cinema-bars-toggle">Enable 2.39:1 Cinematic Letterbox Bars</label>
+                </div>
+              </div>
+            </div>
+
+            <!-- Tab 4: Audio & Scores -->
+            <div class="tab-panel" id="tab-audio-tracks">
+              <div class="panel-header">
+                <h3>Royalty-Free Audio Synthesizer</h3>
+                <span class="badge-free">ZERO COPYRIGHT</span>
+              </div>
+              <p class="panel-hint">Web Audio engine dynamically creates royalty-free background soundtracks in real-time. No copyright claims!</p>
+
+              <div class="soundtrack-picker">
+                <div class="audio-card active" data-soundtrack="epic-orchestral">
+                  <div class="audio-info">
+                    <strong>Epic Cinematic Brass & Strings</strong>
+                    <span>Deep cinematic bass drone, strings & sub-bass hit</span>
+                  </div>
+                  <button class="audio-preview-btn" title="Toggle audio sound">
+                    <span class="audio-play-icon">&#9658;</span>
+                  </button>
+                </div>
+
+                <div class="audio-card" data-soundtrack="cyber-synthwave">
+                  <div class="audio-info">
+                    <strong>Cyberpunk Dark Synth</strong>
+                    <span>Arpeggiated retro-futuristic bassline & pulse</span>
+                  </div>
+                  <button class="audio-preview-btn" title="Toggle audio sound">
+                    <span class="audio-play-icon">&#9658;</span>
+                  </button>
+                </div>
+
+                <div class="audio-card" data-soundtrack="ambient-space">
+                  <div class="audio-info">
+                    <strong>Deep Ambient Sci-Fi Odyssey</strong>
+                    <span>Atmospheric shimmer, ethereal chords & space reverb</span>
+                  </div>
+                  <button class="audio-preview-btn" title="Toggle audio sound">
+                    <span class="audio-play-icon">&#9658;</span>
+                  </button>
+                </div>
+
+                <div class="audio-card" data-soundtrack="silent">
+                  <div class="audio-info">
+                    <strong>Mute Audio Track</strong>
+                    <span>Export pure visuals without audio</span>
+                  </div>
+                  <button class="audio-preview-btn">
+                    <span>&cross;</span>
+                  </button>
+                </div>
+              </div>
+
+              <div class="volume-slider-group mt-3">
+                <div class="slider-label"><span>Master Score Volume:</span> <span id="vol-val">80%</span></div>
+                <input type="range" id="master-vol-slider" min="0" max="100" value="80">
+              </div>
+
+              <div class="sound-fx-triggers mt-3">
+                <label>Instant Sound Effects (SFX):</label>
+                <div class="sfx-buttons">
+                  <button class="btn btn-sm btn-outline sfx-btn" data-sfx="whoosh">Cinematic Whoosh</button>
+                  <button class="btn btn-sm btn-outline sfx-btn" data-sfx="impact">Trailer Boom</button>
+                  <button class="btn btn-sm btn-outline sfx-btn" data-sfx="laser">Sci-Fi Zap</button>
+                  <button class="btn btn-sm btn-outline sfx-btn" data-sfx="glitch">Glitch Pop</button>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </aside>
+
+        <!-- Center: Interactive Video Monitor Preview -->
+        <main class="studio-viewport-area">
+          <!-- AI Autonomous Mind Streaming Banner -->
+          <div class="ai-mind-bar">
+            <div class="ai-mind-left">
+              <span class="brain-glow-icon">🧠</span>
+              <div class="ai-mind-text-wrap">
+                <div class="ai-mind-tag">
+                  <span class="pulse-green-dot"></span>
+                  <span>AI MIND OF ITS OWN &bull; AUTO-DIRECTING</span>
+                </div>
+                <div class="ai-mind-thought" id="ai-mind-thought-text">Dreaming: Samurai master standing in bamboo forest under pouring rain and lightning...</div>
+              </div>
+            </div>
+            <div class="ai-mind-controls">
+              <button class="btn btn-xs btn-outline" id="auto-pilot-toggle-btn" title="Toggle autonomous mode">
+                <span id="auto-pilot-status-text">⚡ Auto-Director: ON</span>
+              </button>
+              <button class="btn btn-xs btn-accent" id="auto-pilot-next-btn" title="Dream up next movie scene">
+                Next Scene 🎬
+              </button>
+            </div>
+          </div>
+
+          <div class="viewport-wrapper" id="viewport-wrapper">
+            <!-- Movie Picture Quick Switcher Bar -->
+            <div class="scene-picture-bar">
+              <span class="scene-picture-label">🎬 Live Movie Footage:</span>
+              <button class="pic-pill-btn active" data-pic="people-walking">🎥 Real Movie: People Walking</button>
+              <button class="pic-pill-btn" data-pic="city-street">🚶 Real Movie: City Street</button>
+              <button class="pic-pill-btn" data-pic="actor-walking">👤 Real Movie: Actor Walking</button>
+              <button class="pic-pill-btn" data-pic="pedestrians">👥 Real Movie: Pedestrians</button>
+              <button class="pic-pill-btn" data-pic="cyberpunk">🌆 Cyberpunk City</button>
+              <button class="pic-pill-btn" data-pic="samurai">⚔️ Samurai Storm</button>
+              <button class="pic-pill-btn" data-pic="space">🚀 Deep Space</button>
+              <button class="pic-pill-btn" data-pic="ocean">🌊 Abyssal Ocean</button>
+              <button class="pic-pill-btn" data-pic="desert">🏜️ Mars Dunes</button>
+              <button class="pic-pill-btn" data-pic="fantasy">🏰 Fantasy Dragon</button>
+              <button class="pic-pill-btn" data-pic="synthwave">📼 80s Synthwave</button>
+              <button class="pic-pill-btn pic-pill-upload" id="inline-upload-pic-btn">📷 Put In My Pic</button>
+            </div>
+
+            <!-- Canvas Video Display -->
+            <div class="canvas-screen-box" id="canvas-screen-box">
+              <canvas id="movie-canvas" width="1280" height="720"></canvas>
+              
+              <!-- Live HUD Overlay -->
+              <div class="viewport-hud">
+                <div class="hud-top">
+                  <span class="hud-badge hud-rec"><span class="hud-dot"></span> LIVE PREVIEW</span>
+                  <span class="hud-badge" id="hud-res">1280 &times; 720 &bull; 60 FPS</span>
+                  <span class="hud-badge" id="hud-filter">LUT: TEAL &amp; ORANGE</span>
+                </div>
+                <div class="hud-watermark-free">NO WATERMARK</div>
+              </div>
+
+              <!-- Center Play/Pause Overlay Icon when paused -->
+              <div class="canvas-play-overlay" id="canvas-play-overlay">
+                <div class="play-prompt-card">
+                  <div class="play-circle-glow">
+                    <svg width="34" height="34" viewBox="0 0 24 24" fill="white">
+                      <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                    </svg>
+                  </div>
+                  <span class="play-prompt-text">▶ Click Anywhere to Play Video</span>
+                  <span class="play-prompt-hint">Or type any prompt above to generate a new movie</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Player Transport Bar -->
+            <div class="player-controls-bar">
+              <div class="transport-left">
+                <button class="transport-btn" id="play-pause-btn" title="Play / Pause (Spacebar)">
+                  <svg id="play-icon" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                    <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                  </svg>
+                  <svg id="pause-icon" class="hidden" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                    <rect x="6" y="4" width="4" height="16"></rect>
+                    <rect x="14" y="4" width="4" height="16"></rect>
+                  </svg>
+                </button>
+                <button class="transport-btn" id="stop-btn" title="Return to start">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                    <rect x="5" y="5" width="14" height="14"></rect>
+                  </svg>
+                </button>
+                <button class="transport-btn" id="mute-toggle-btn" title="Sound is Muted (Click to Unmute)">
+                  <svg id="volume-muted-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#f87171" stroke-width="2">
+                    <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                    <line x1="23" y1="9" x2="17" y2="15"></line>
+                    <line x1="17" y1="9" x2="23" y2="15"></line>
+                  </svg>
+                  <svg id="volume-high-icon" class="hidden" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="2">
+                    <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                    <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+                  </svg>
+                </button>
+                <span class="timecode-readout" id="current-time-readout">00:00.00</span>
+              </div>
+
+              <!-- Main Scrubber Bar -->
+              <div class="scrubber-container" id="scrubber-track">
+                <div class="scrubber-fill" id="scrubber-progress"></div>
+                <div class="scrubber-handle" id="scrubber-thumb"></div>
+              </div>
+
+              <div class="transport-right">
+                <input type="file" id="user-image-input" accept="image/*" class="hidden">
+                <button class="btn btn-xs btn-outline" id="upload-pic-btn" title="Optionally put in any photo from your computer to animate it">
+                  📷 Put In A Picture (Optional)
+                </button>
+                <span class="timecode-readout text-muted" id="total-time-readout">00:08.00</span>
+                <button class="transport-btn" id="fullscreen-btn" title="Fullscreen Preview">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"></path>
+                  </svg>
+                </button>
+              </div>
+            </div>
+
+            <!-- Helpful picture indicator badge -->
+            <div class="picture-helper-banner">
+              <span class="sparkle-icon">🎬</span>
+              <span><strong>Full Video Picture Active:</strong> The movie picture is rendering live with zero effort! Click any movie picture above to switch scenes instantly, or drop in your own picture.</span>
+            </div>
+          </div>
+
+          <!-- Bottom: Multi-Track Timeline Editor -->
+          <div class="studio-timeline-panel">
+            <div class="timeline-header">
+              <div class="timeline-tools">
+                <span class="timeline-title">Multi-Track Timeline</span>
+                <button class="btn-timeline-tool" id="add-scene-btn" title="Add another scene to timeline">+ Add Scene</button>
+                <button class="btn-timeline-tool" id="split-clip-btn" title="Split clip at playhead">Split (S)</button>
+                <button class="btn-timeline-tool" id="transition-btn" title="Add transition effect">Crossfade FX</button>
+              </div>
+              <div class="timeline-zoom">
+                <span>Zoom</span>
+                <input type="range" min="1" max="3" step="0.5" value="1" id="timeline-zoom-slider">
+              </div>
+            </div>
+
+            <!-- Tracks Area -->
+            <div class="timeline-tracks-wrapper" id="timeline-tracks-area">
+              <!-- Playhead indicator -->
+              <div class="timeline-playhead" id="timeline-playhead">
+                <div class="playhead-marker"></div>
+                <div class="playhead-line"></div>
+              </div>
+
+              <!-- Track 1: Video & Visual Scenes -->
+              <div class="track-row">
+                <div class="track-label">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="2.18" ry="2.18"></rect><line x1="7" y1="2" x2="7" y2="22"></line><line x1="17" y1="2" x2="17" y2="22"></line><line x1="2" y1="12" x2="22" y2="12"></line><line x1="2" y1="7" x2="7" y2="7"></line><line x1="2" y1="17" x2="7" y2="17"></line><line x1="17" y1="17" x2="22" y2="17"></line><line x1="17" y1="7" x2="22" y2="7"></line></svg>
+                  <span>Video 1</span>
+                </div>
+                <div class="track-lane" id="video-track-lane">
+                  <div class="track-clip clip-video" id="clip-scene-1" style="width: 50%;">
+                    <div class="clip-thumb thumb-space"></div>
+                    <span class="clip-name">Scene 1: Nebula Drift</span>
+                    <span class="clip-dur">0.0s - 4.0s</span>
+                  </div>
+                  <div class="track-clip clip-video clip-secondary" id="clip-scene-2" style="width: 50%;">
+                    <div class="clip-thumb thumb-cyber"></div>
+                    <span class="clip-name">Scene 2: Neon Megacity</span>
+                    <span class="clip-dur">4.0s - 8.0s</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Track 2: Title & Overlay Graphics -->
+              <div class="track-row">
+                <div class="track-label">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="4 7 4 4 20 4 20 7"></polyline><line x1="9" y1="20" x2="15" y2="20"></line><line x1="12" y1="4" x2="12" y2="20"></line></svg>
+                  <span>Titles</span>
+                </div>
+                <div class="track-lane">
+                  <div class="track-clip clip-title" style="left: 10%; width: 45%;">
+                    <span class="clip-name">Main Title: "BEYOND THE HORIZON"</span>
+                    <span class="clip-dur">0.8s - 4.4s</span>
+                  </div>
+                  <div class="track-clip clip-title" style="left: 60%; width: 35%;">
+                    <span class="clip-name">Tagline: "A CAMARA ORIGINAL FILM"</span>
+                    <span class="clip-dur">4.8s - 7.6s</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Track 3: Audio Soundtrack -->
+              <div class="track-row">
+                <div class="track-label">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18V5l12-2v13"></path><circle cx="6" cy="18" r="3"></circle><circle cx="18" cy="16" r="3"></circle></svg>
+                  <span>Audio</span>
+                </div>
+                <div class="track-lane">
+                  <div class="track-clip clip-audio" style="width: 100%;">
+                    <div class="audio-waveform-vis">
+                      <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+                      <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+                    </div>
+                    <span class="clip-name" id="timeline-audio-label">Soundtrack: Epic Cinematic Orchestral (Royalty Free)</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </main>
+
+        <!-- Right Sidebar: Free Asset Library & Scene Presets -->
+        <aside class="studio-library">
+          <div class="library-header">
+            <h4>Free Stock & Scenes</h4>
+            <span class="badge-pill-sm">100% Free</span>
+          </div>
+          <p class="panel-hint">Click any scene preset to instantly inject it into your video timeline.</p>
+
+          <div class="asset-list">
+            <div class="asset-card" data-preset="cyberpunk-chase">
+              <div class="asset-preview-img preset-cyber">
+                <span class="preset-tag">Sci-Fi / Action</span>
+              </div>
+              <div class="asset-body">
+                <h6>Neon Tokyo Chase</h6>
+                <p>Rainy cyberpunk streets with speeding pursuit vehicles & flares</p>
+                <button class="btn btn-xs btn-outline btn-load-preset">Apply Scene</button>
+              </div>
+            </div>
+
+            <div class="asset-card" data-preset="space-odyssey">
+              <div class="asset-preview-img preset-space">
+                <span class="preset-tag">Cosmic / Wonder</span>
+              </div>
+              <div class="asset-body">
+                <h6>Cosmic Singularity</h6>
+                <p>Starship cruising into glowing purple accretion spiral</p>
+                <button class="btn btn-xs btn-outline btn-load-preset">Apply Scene</button>
+              </div>
+            </div>
+
+            <div class="asset-card" data-preset="vintage-retro">
+              <div class="asset-preview-img preset-vintage">
+                <span class="preset-tag">Retro 80s / Synth</span>
+              </div>
+              <div class="asset-body">
+                <h6>Synthwave Sunset</h6>
+                <p>Vector wireframe grid, chrome sun, and VHS tape artifacts</p>
+                <button class="btn btn-xs btn-outline btn-load-preset">Apply Scene</button>
+              </div>
+            </div>
+
+            <div class="asset-card" data-preset="nature-drone">
+              <div class="asset-preview-img preset-nature">
+                <span class="preset-tag">Cinematic Nature</span>
+              </div>
+              <div class="asset-body">
+                <h6>Mountain Peak Sunrise</h6>
+                <p>Majestic alpine ranges with volumetric golden fog clouds</p>
+                <button class="btn btn-xs btn-outline btn-load-preset">Apply Scene</button>
+              </div>
+            </div>
+
+            <div class="asset-card" data-preset="thriller-matrix">
+              <div class="asset-preview-img preset-matrix">
+                <span class="preset-tag">Matrix / Code</span>
+              </div>
+              <div class="asset-body">
+                <h6>Digital Matrix Flow</h6>
+                <p>Cascading green data rain and dark subterranean thriller vibes</p>
+                <button class="btn btn-xs btn-outline btn-load-preset">Apply Scene</button>
+              </div>
+            </div>
+          </div>
+        </aside>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- AI Movie Director Generation Modal -->
+  <div class="modal-backdrop hidden" id="ai-generate-modal">
+    <div class="modal-dialog ai-gen-dialog">
+      <div class="ai-gen-visual-scanner">
+        <div class="scan-beam"></div>
+        <div class="ai-sparkles-icon">✨</div>
+      </div>
+      <div class="modal-body text-center">
+        <div class="badge-tag">CAMARA AI FILM DIRECTOR v2.5</div>
+        <h3 id="ai-gen-title">Directing Your Movie...</h3>
+        <p class="modal-desc italic text-muted" id="ai-gen-prompt-quote">"Samurai standing in raining bamboo forest under lightning..."</p>
+
+        <div class="ai-steps-list">
+          <div class="ai-step-item active" id="ai-step-1">
+            <span class="step-check">⏳</span>
+            <span class="step-text">1. Analyzing Screenplay & Cinematographic Mood</span>
+          </div>
+          <div class="ai-step-item" id="ai-step-2">
+            <span class="step-check">○</span>
+            <span class="step-text">2. Choreographing Camera Motion & VFX Particles</span>
+          </div>
+          <div class="ai-step-item" id="ai-step-3">
+            <span class="step-check">○</span>
+            <span class="step-text">3. Synthesizing Cinematic Score & Spatial SFX</span>
+          </div>
+          <div class="ai-step-item" id="ai-step-4">
+            <span class="step-check">○</span>
+            <span class="step-text">4. Color Grading 3D Hollywood LUT & Anamorphic Flare</span>
+          </div>
+          <div class="ai-step-item" id="ai-step-5">
+            <span class="step-check">○</span>
+            <span class="step-text">5. Assembling Multi-Track Timeline & Titles</span>
+          </div>
+        </div>
+
+        <div class="progress-bar-bg mt-3">
+          <div class="progress-bar-fill" id="ai-gen-bar-fill" style="width: 15%;"></div>
+        </div>
+        <div class="progress-status-text mt-2 font-mono" id="ai-gen-status">Synthesizing scene frames...</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Export Modal -->
+  <div class="modal-backdrop hidden" id="export-modal">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h3>Export Your Movie For Free</h3>
+        <button class="modal-close" id="close-export-modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p class="modal-desc">
+          Camara renders your video frame-by-frame directly in your browser. 
+          There are <strong>zero watermarks</strong>, <strong>no mandatory signups</strong>, and <strong>100% royalty-free rights</strong> for commercial use.
+        </p>
+
+        <div class="export-settings-box">
+          <div class="setting-item">
+            <label>Format:</label>
+            <div class="badge-format">WebM Video (Chrome, Firefox, Edge, Safari 16+)</div>
+          </div>
+          <div class="setting-item">
+            <label>Resolution:</label>
+            <select id="export-res-select" class="form-select">
+              <option value="1280x720">720p HD (Fastest Render)</option>
+              <option value="1920x1080" selected>1080p Full HD (Recommended)</option>
+              <option value="3840x2160">4K Ultra HD (Cinema Quality)</option>
+            </select>
+          </div>
+          <div class="setting-item">
+            <label>Watermark:</label>
+            <span class="text-success font-semibold">&check; Disabled (Clean Video)</span>
+          </div>
+        </div>
+
+        <div class="export-progress-container hidden" id="export-progress-wrap">
+          <div class="progress-bar-bg">
+            <div class="progress-bar-fill" id="export-bar-fill"></div>
+          </div>
+          <div class="progress-status-text" id="export-status-text">Recording video stream: 0%</div>
+        </div>
+
+        <div class="export-success-box hidden" id="export-success-box">
+          <div class="success-icon">&check;</div>
+          <h4>Video Ready!</h4>
+          <p>Your movie has been generated and downloaded to your computer.</p>
+          <a href="#" class="btn btn-primary" id="download-again-btn">Download Again</a>
+        </div>
+      </div>
+      <div class="modal-footer" id="modal-footer-actions">
+        <button class="btn btn-secondary" id="cancel-export-btn">Cancel</button>
+        <button class="btn btn-accent" id="start-render-btn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+          Render & Download Now
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Key Features Section -->
+  <section id="features" class="features-section">
+    <div class="container">
+      <div class="section-header text-center">
+        <div class="badge-tag">WHY CREATORS LOVE CAMARA</div>
+        <h2 class="section-title">Everything You Need to Make Movies Free</h2>
+        <p class="section-desc">Stop paying $30/month for restrictive video editors that slap watermarks on your art. Camara puts studio-grade tools directly in your hands.</p>
+      </div>
+
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon-wrapper icon-gradient-1">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="4.93" y1="4.93" x2="19.07" y2="19.07"></line></svg>
+          </div>
+          <h3 class="feature-heading">100% Watermark Free</h3>
+          <p class="feature-text">We believe your art belongs to you. Every video exported from Camara is 100% free of intrusive logos, stamps, or promotional overlays.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon-wrapper icon-gradient-2">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+          </div>
+          <h3 class="feature-heading">AI Story-to-Screen Engine</h3>
+          <p class="feature-text">Turn a simple text idea into cinematic shots with dynamic camera movements, depth of field, and photorealistic lighting simulations.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon-wrapper icon-gradient-3">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="2.18" ry="2.18"></rect><line x1="7" y1="2" x2="7" y2="22"></line><line x1="17" y1="2" x2="17" y2="22"></line><line x1="2" y1="12" x2="22" y2="12"></line></svg>
+          </div>
+          <h3 class="feature-heading">Multi-Track Timeline Editor</h3>
+          <p class="feature-text">Layer video tracks, text cards, motion graphics, and audio stems. Trim, cut, and split clips with frame-accurate timeline precision.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon-wrapper icon-gradient-4">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a10 10 0 0 1 10 10c0 5.523-4.477 10-10 10S2 17.523 2 12 6.477 2 12 2Z"></path><path d="M12 6v12"></path><path d="M12 6a6 6 0 0 1 6 6c0 3.314-2.686 6-6 6"></path></svg>
+          </div>
+          <h3 class="feature-heading">Hollywood 3D LUT Color Grading</h3>
+          <p class="feature-text">Instant cinematic color palettes: Blockbuster Teal & Orange, Neo-Cyberpunk, Moody Noir 35mm, and Golden Hour film looks.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon-wrapper icon-gradient-5">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18V5l12-2v13"></path><circle cx="6" cy="18" r="3"></circle><circle cx="18" cy="16" r="3"></circle></svg>
+          </div>
+          <h3 class="feature-heading">Royalty-Free Audio Synthesizer</h3>
+          <p class="feature-text">Never worry about DMCA or YouTube copyright strikes. Our sound engine synthesizes high-energy film scores and sound effects completely safe to monetize.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon-wrapper icon-gradient-6">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+          </div>
+          <h3 class="feature-heading">100% Private & In-Browser</h3>
+          <p class="feature-text">Your footage and prompts stay on your device. Powered by WebGL and Web Audio, with no invasive telemetry or mandatory account requirements.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Interactive Templates Showcase Section -->
+  <section id="templates" class="templates-section">
+    <div class="container">
+      <div class="section-header text-center">
+        <div class="badge-tag">READY-TO-USE PRESETS</div>
+        <h2 class="section-title">Jumpstart Any Video Project</h2>
+        <p class="section-desc">Pick a genre or video format below and load it directly into the studio with one click.</p>
+      </div>
+
+      <div class="templates-filter-row">
+        <button class="template-pill active" data-genre="all">All Presets</button>
+        <button class="template-pill" data-genre="film">Sci-Fi & Film</button>
+        <button class="template-pill" data-genre="trailer">Action Trailer</button>
+        <button class="template-pill" data-genre="social">Reels & TikTok</button>
+        <button class="template-pill" data-genre="music">Music Visualizer</button>
+      </div>
+
+      <div class="template-cards-grid">
+        <!-- Template 1 -->
+        <div class="template-item" data-category="film">
+          <div class="template-badge">16:9 Cinema</div>
+          <div class="template-banner preset-space">
+            <div class="template-play-btn" data-preset-action="space-odyssey">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="white"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+            </div>
+          </div>
+          <div class="template-info">
+            <div class="template-meta">
+              <h4>Interstellar Odyssey</h4>
+              <span class="template-tag">Film Teaser</span>
+            </div>
+            <p>Anamorphic lens flares, floating cosmos particles, and epic string swells.</p>
+            <button class="btn btn-sm btn-primary w-full load-template-trigger" data-preset-action="space-odyssey">Open in Studio</button>
+          </div>
+        </div>
+
+        <!-- Template 2 -->
+        <div class="template-item" data-category="trailer">
+          <div class="template-badge">16:9 Cinema</div>
+          <div class="template-banner preset-cyber">
+            <div class="template-play-btn" data-preset-action="cyberpunk-chase">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="white"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+            </div>
+          </div>
+          <div class="template-info">
+            <div class="template-meta">
+              <h4>Cyberpunk 2099 Trailer</h4>
+              <span class="template-tag">Action Thriller</span>
+            </div>
+            <p>High-contrast neon rain, digital glitch transitions, and heavy bass pulses.</p>
+            <button class="btn btn-sm btn-primary w-full load-template-trigger" data-preset-action="cyberpunk-chase">Open in Studio</button>
+          </div>
+        </div>
+
+        <!-- Template 3 -->
+        <div class="template-item" data-category="music">
+          <div class="template-badge">16:9 / 1:1</div>
+          <div class="template-banner preset-vintage">
+            <div class="template-play-btn" data-preset-action="vintage-retro">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="white"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+            </div>
+          </div>
+          <div class="template-info">
+            <div class="template-meta">
+              <h4>Retro Synthwave Night</h4>
+              <span class="template-tag">Music Visualizer</span>
+            </div>
+            <p>3D wireframe horizon grid, glowing sunset horizon, and VHS scanlines.</p>
+            <button class="btn btn-sm btn-primary w-full load-template-trigger" data-preset-action="vintage-retro">Open in Studio</button>
+          </div>
+        </div>
+
+        <!-- Template 4 -->
+        <div class="template-item" data-category="film">
+          <div class="template-badge">2.39:1 Anamorphic</div>
+          <div class="template-banner preset-nature">
+            <div class="template-play-btn" data-preset-action="nature-drone">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="white"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+            </div>
+          </div>
+          <div class="template-info">
+            <div class="template-meta">
+              <h4>Alpine Highlands Drone</h4>
+              <span class="template-tag">Documentary</span>
+            </div>
+            <p>Golden sunrise over mountain ridges with ambient acoustic drone audio.</p>
+            <button class="btn btn-sm btn-primary w-full load-template-trigger" data-preset-action="nature-drone">Open in Studio</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Royalty-Free Audio Lab Section -->
+  <section id="audio-lab" class="audio-lab-section">
+    <div class="container">
+      <div class="audio-lab-card">
+        <div class="audio-lab-content">
+          <div class="badge-tag">BUILT-IN SOUNDTRACK ENGINE</div>
+          <h2 class="section-title">Zero-Copyright Scores & Sound Effects</h2>
+          <p class="section-desc">
+            Stop worrying about YouTube copyright strikes, demonetization, or royalty licensing fees. 
+            Camara includes a live Web Audio synthesizer that creates fresh, original orchestral and synth music on the fly.
+          </p>
+
+          <div class="soundtrack-feature-list">
+            <div class="soundtrack-feature-item">
+              <span class="check-bullet">&check;</span>
+              <span>100% Free for Commercial & YouTube Monetized Videos</span>
+            </div>
+            <div class="soundtrack-feature-item">
+              <span class="check-bullet">&check;</span>
+              <span>Dynamic Stems: Drum kicks, bass drones, and melodic arpeggios</span>
+            </div>
+            <div class="soundtrack-feature-item">
+              <span class="check-bullet">&check;</span>
+              <span>Instant Sound Effects: Booms, whooshes, impacts, and laser FX</span>
+            </div>
+          </div>
+
+          <div class="audio-lab-cta">
+            <a href="#studio" class="btn btn-primary" id="open-audio-tab-cta">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18V5l12-2v13"></path><circle cx="6" cy="18" r="3"></circle><circle cx="18" cy="16" r="3"></circle></svg>
+              Compose Audio in Studio
+            </a>
+          </div>
+        </div>
+
+        <div class="audio-visualizer-box">
+          <div class="vis-header">
+            <span class="vis-dot"></span>
+            <span>Web Audio Real-Time Waveform Generator</span>
+          </div>
+          <div class="waveform-bars-container" id="visualizer-bars">
+            <!-- Dynamically generated bars -->
+          </div>
+          <div class="sound-quick-trigger-row">
+            <button class="btn btn-sm btn-secondary sfx-btn" data-sfx="whoosh">Sound: Whoosh</button>
+            <button class="btn btn-sm btn-secondary sfx-btn" data-sfx="impact">Sound: Sub Boom</button>
+            <button class="btn btn-sm btn-secondary sfx-btn" data-sfx="laser">Sound: Laser</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Comparison Table: Camara vs Other Video Creators -->
+  <section class="comparison-section">
+    <div class="container">
+      <div class="section-header text-center">
+        <div class="badge-tag">THE HONEST TRUTH</div>
+        <h2 class="section-title">How Camara Compares to "Free" Competitors</h2>
+        <p class="section-desc">Most "free" video editors hold your export hostage behind giant watermarks or credit cards. Here is how we differ.</p>
+      </div>
+
+      <div class="comparison-table-wrapper">
+        <table class="comparison-table">
+          <thead>
+            <tr>
+              <th>Feature</th>
+              <th class="camara-col">Camara Studio</th>
+              <th>Typical "Free" Tools</th>
+              <th>Paid Video Software</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Price</strong></td>
+              <td class="camara-col"><span class="badge-success">100% Free</span></td>
+              <td>"Free trial" / Free tier</td>
+              <td>$20 &ndash; $60 / month</td>
+            </tr>
+            <tr>
+              <td><strong>Watermarks</strong></td>
+              <td class="camara-col"><span class="text-success">&check; Zero Watermarks</span></td>
+              <td><span class="text-danger">&cross; Huge Watermark</span></td>
+              <td><span class="text-success">&check; Clean</span></td>
+            </tr>
+            <tr>
+              <td><strong>Account / Credit Card</strong></td>
+              <td class="camara-col"><span class="text-success">&check; None Required</span></td>
+              <td><span class="text-danger">&cross; Mandatory Signup</span></td>
+              <td><span class="text-danger">&cross; Credit Card Req.</span></td>
+            </tr>
+            <tr>
+              <td><strong>AI Scene Generation</strong></td>
+              <td class="camara-col"><span class="text-success">&check; Free Unlimited</span></td>
+              <td><span class="text-danger">&cross; 3 credits limit</span></td>
+              <td>Extra Add-on fee</td>
+            </tr>
+            <tr>
+              <td><strong>Royalty-Free Audio</strong></td>
+              <td class="camara-col"><span class="text-success">&check; Built-In Synthesizer</span></td>
+              <td>Limited 3 tracks</td>
+              <td>Requires Splice / Epidemic</td>
+            </tr>
+            <tr>
+              <td><strong>Export Quality</strong></td>
+              <td class="camara-col"><span class="text-success">&check; 1080p / 4K Free</span></td>
+              <td>Locked to 480p/720p</td>
+              <td>4K / ProRes</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section id="faq" class="faq-section">
+    <div class="container">
+      <div class="section-header text-center">
+        <div class="badge-tag">FREQUENTLY ASKED QUESTIONS</div>
+        <h2 class="section-title">Everything You Need to Know</h2>
+      </div>
+
+      <div class="faq-grid">
+        <div class="faq-item">
+          <h4 class="faq-q">Is Camara really 100% free? Are there hidden fees?</h4>
+          <p class="faq-a">Yes! Camara runs entirely in your browser using modern WebGL, Web Audio, and Canvas technologies. There are no subscriptions, no locked features, and no credit card requirements.</p>
+        </div>
+
+        <div class="faq-item">
+          <h4 class="faq-q">Will my exported video have a watermark?</h4>
+          <p class="faq-a">No. You get completely clean, watermark-free videos ready to upload to YouTube, TikTok, Instagram, Vimeo, or film festivals.</p>
+        </div>
+
+        <div class="faq-item">
+          <h4 class="faq-q">Can I monetize my videos on YouTube or use them for commercial clients?</h4>
+          <p class="faq-a">Yes. All visual outputs and procedural soundtracks generated by Camara are 100% royalty-free and safe for commercial monetization without copyright claims.</p>
+        </div>
+
+        <div class="faq-item">
+          <h4 class="faq-q">Do I need to install software or download huge apps?</h4>
+          <p class="faq-a">No installation required. It works directly inside your browser on Windows, Mac, Linux, and Chromebooks.</p>
+        </div>
+
+        <div class="faq-item">
+          <h4 class="faq-q">How does video export work?</h4>
+          <p class="faq-a">Camara uses the HTML5 MediaRecorder and Canvas capture API to render your visual scenes and audio tracks into a standard WebM / MP4 video file saved straight to your computer's Downloads folder.</p>
+        </div>
+
+        <div class="faq-item">
+          <h4 class="faq-q">What formats and resolutions are supported?</h4>
+          <p class="faq-a">You can create widescreen 16:9 cinema, 9:16 vertical reels/TikToks, 2.39:1 anamorphic movies, and 1:1 social square videos at up to 4K resolution.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Call to Action Banner -->
+  <section class="cta-banner-section">
+    <div class="container">
+      <div class="cta-card">
+        <div class="cta-content">
+          <h2 class="cta-title">Start Directing Your Next Video in Seconds</h2>
+          <p class="cta-subtitle">No accounts to create, no software to install, no watermarks. Just pure filmmaking freedom.</p>
+          <a href="#studio" class="btn btn-hero btn-primary pulse-btn">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+              <polygon points="5 3 19 12 5 21 5 3"></polygon>
+            </svg>
+            Launch Free Video Creator
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container footer-container">
+      <div class="footer-left">
+        <div class="brand-logo">
+          <div class="logo-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polygon points="23 7 16 12 23 17 23 7"></polygon>
+              <rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect>
+            </svg>
+          </div>
+          <span class="logo-text">Camara</span>
+        </div>
+        <p class="footer-tagline">The 100% free movie & video maker for everyone.</p>
+      </div>
+
+      <div class="footer-nav">
+        <div class="footer-col">
+          <h5>Product</h5>
+          <a href="#studio">Video Studio</a>
+          <a href="#features">AI Scene Generator</a>
+          <a href="#templates">Free Templates</a>
+          <a href="#audio-lab">Royalty-Free Audio</a>
+        </div>
+        <div class="footer-col">
+          <h5>Tools</h5>
+          <a href="#studio">Color Grading LUTs</a>
+          <a href="#studio">Aspect Ratio Converter</a>
+          <a href="#studio">Video Exporter</a>
+        </div>
+        <div class="footer-col">
+          <h5>Community</h5>
+          <a href="#faq">FAQ</a>
+          <a href="https://github.com" target="_blank" rel="noreferrer">Open Source</a>
+          <a href="#">Creator Showcase</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div class="container footer-bottom-inner">
+        <p>&copy; 2026 Camara Studio. Made for creators, filmmakers, and storytellers worldwide.</p>
+        <div class="footer-badge">Zero Watermarks &bull; Free Forever</div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts with cache busters -->
+  <script src="scripts/scenes.js?v=8.0"></script>
+  <script src="scripts/templates.js?v=8.0"></script>
+  <script src="scripts/app.js?v=8.0"></script>
+</body>
+</html>

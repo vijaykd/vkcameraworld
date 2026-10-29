@@ -8,8 +8,8 @@
 
   // State Management
   const state = {
-    isPlaying: true, // AUTO-PLAY ON LOAD - Mind of its own!
-    autoPilot: true, // Autonomous AI Movie Director enabled
+    isPlaying: false, // PAUSED ON LOAD - Waits for your prompt!
+    autoPilot: false, // Waits for your prompt
     autoStoryIndex: 0,
     currentTime: 0,
     duration: 8.0, // 8 seconds default
@@ -27,8 +27,8 @@
     masterVolume: 0.0,
     isMuted: true, // MUTED by default to prevent unwanted noise
     cinemaBars: true,
-    titleText: 'MIDNIGHT WALK',
-    subtitleText: 'A CINEMATIC WALKING PICTURE • 4K 60FPS',
+    titleText: 'WAITING FOR PROMPT',
+    subtitleText: 'TYPE YOUR MOVIE IDEA ABOVE TO GENERATE',
     titleStyle: 'minimal',
     titleText: 'THE CITY WALKERS',
     subtitleText: 'LIVE-ACTION CINEMA • REAL PEOPLE WALKING',
@@ -2977,30 +2977,208 @@
   ];
 
   function analyzePromptToMovie(prompt) {
-    const p = prompt.toLowerCase();
+    const raw = (prompt || '').trim();
+    const p = raw.toLowerCase();
 
-    // Default configuration
+    // Default configuration (Space Odyssey)
     let theme = 'space';
     let scene1 = { type: 'space', name: 'Scene 1: Nebula Drift', start: 0, end: 4 };
     let scene2 = { type: 'singularity', name: 'Scene 2: Event Horizon', start: 4, end: 8 };
     let title = 'BEYOND THE HORIZON';
-    let subtitle = 'A DEEP SPACE VOYAGE • IN 4K';
+    let subtitle = `AI MOVIE • DIRECTED FROM: "${raw}"`;
     let lut = 'teal-orange';
     let soundtrack = 'ambient-space';
     let cameraMotion = 'pan-zoom';
     let flare = 50;
-    let grain = 25;
-    let contrast = 120;
-    let saturation = 110;
-    let vignette = 50;
+    let grain = 20;
+    let contrast = 115;
+    let saturation = 120;
+    let vignette = 25;
     let cinemaBars = true;
 
-    if (p.includes('walk') || p.includes('people') || p.includes('movie') || p.includes('person') || p.includes('crowd') || p.includes('street') || p.includes('actor') || p.includes('human')) {
+    // 1. Samurai / Ninja / Martial Arts / Ancient Japan
+    if (p.includes('samurai') || p.includes('ninja') || p.includes('katana') || p.includes('blade') || p.includes('japan') || p.includes('bamboo') || p.includes('duel') || p.includes('cherry blossom') || p.includes('sword fight')) {
+      theme = 'samurai';
+      scene1 = { type: 'samurai', name: 'Scene 1: Bamboo Rain Standoff', start: 0, end: 4 };
+      scene2 = { type: 'samurai-climax', name: 'Scene 2: Thunder Strike Climax', start: 4, end: 8 };
+      title = 'THE RAIN BLADE';
+      subtitle = 'AN HONOR WRITTEN IN STEEL';
+      lut = 'film-noir';
+      soundtrack = 'epic-orchestral';
+      cameraMotion = 'handheld';
+      flare = 30;
+      grain = 25;
+      contrast = 125;
+      saturation = 90;
+      vignette = 30;
+
+    // 2. Fantasy / Dragon / Medieval / Castle / Magic
+    } else if (p.includes('dragon') || p.includes('castle') || p.includes('knight') || p.includes('fantasy') || p.includes('magic') || p.includes('fortress') || p.includes('medieval') || p.includes('siege') || p.includes('throne')) {
+      theme = 'fantasy';
+      scene1 = { type: 'fantasy', name: 'Scene 1: Fortress Ramparts at Aurora', start: 0, end: 4 };
+      scene2 = { type: 'fantasy-dragon', name: 'Scene 2: Dragon Fire Flight', start: 4, end: 8 };
+      title = 'ASHES OF THE CITADEL';
+      subtitle = 'THE DRAGON SAGA • CHAPTER ONE';
+      lut = 'golden-hour';
+      soundtrack = 'epic-orchestral';
+      cameraMotion = 'orbital';
+      flare = 55;
+      grain = 20;
+      contrast = 120;
+      saturation = 135;
+      vignette = 25;
+
+    // 3. Cyberpunk / Future Sci-Fi / Flying Cars / Neo Tokyo
+    } else if (p.includes('cyberpunk') || p.includes('cyber') || p.includes('flying car') || p.includes('spinner') || p.includes('tokyo') || p.includes('neo') || p.includes('blade runner') || p.includes('neon') || p.includes('robot') || p.includes('android')) {
+      theme = 'cyberpunk';
+      scene1 = { type: 'cyberpunk', name: 'Scene 1: Neon Megacity Skyline', start: 0, end: 4 };
+      scene2 = { type: 'grid', name: 'Scene 2: High Speed Aerocar Pursuit', start: 4, end: 8 };
+      title = 'NEO TOKYO 2099';
+      subtitle = 'HIGH-ALTITUDE PURSUIT IN RAIN';
+      lut = 'cyberpunk';
+      soundtrack = 'cyber-synthwave';
+      cameraMotion = 'handheld';
+      flare = 65;
+      grain = 25;
+      contrast = 125;
+      saturation = 140;
+      vignette = 25;
+
+    // 4. Deep Ocean / Underwater / Submarine / Jellyfish
+    } else if (p.includes('ocean') || p.includes('underwater') || p.includes('sea') || p.includes('sub') || p.includes('submarine') || p.includes('jellyfish') || p.includes('abyss') || p.includes('mariana') || p.includes('deep sea') || p.includes('coral') || p.includes('scuba')) {
+      theme = 'ocean';
+      scene1 = { type: 'ocean', name: 'Scene 1: Mariana Abyss Descent', start: 0, end: 4 };
+      scene2 = { type: 'ocean-deep', name: 'Scene 2: Bioluminescent Encounter', start: 4, end: 8 };
+      title = 'ABYSSAL REALM';
+      subtitle = 'EXPLORATION BEYOND SUNLIGHT';
+      lut = 'teal-orange';
+      soundtrack = 'ambient-space';
+      cameraMotion = 'pan-zoom';
+      flare = 50;
+      grain = 15;
+      contrast = 115;
+      saturation = 130;
+      vignette = 25;
+
+    // 5. Mars / Desert / Dunes / Rover / Alien Wasteland
+    } else if (p.includes('mars') || p.includes('desert') || p.includes('dune') || p.includes('sand') || p.includes('rover') || p.includes('sahara') || p.includes('wasteland') || p.includes('red planet')) {
+      theme = 'desert';
+      scene1 = { type: 'desert', name: 'Scene 1: Red Dunes Expedition', start: 0, end: 4 };
+      scene2 = { type: 'desert-storm', name: 'Scene 2: Martian Dust Storm', start: 4, end: 8 };
+      title = 'RED DUNE PROTOCOL';
+      subtitle = 'OUTPOST ON THE RED PLANET';
+      lut = 'golden-hour';
+      soundtrack = 'epic-orchestral';
+      cameraMotion = 'dolly-zoom';
+      flare = 40;
+      grain = 25;
+      contrast = 115;
+      saturation = 130;
+      vignette = 25;
+
+    // 6. Retro 80s Synthwave / Outrun / Grid / Neon Car
+    } else if (p.includes('synthwave') || p.includes('retro') || p.includes('outrun') || p.includes('80s') || p.includes('vaporwave') || p.includes('arcade') || p.includes('grid')) {
+      theme = 'synthwave';
+      scene1 = { type: 'synthwave', name: 'Scene 1: Neon Wireframe Grid', start: 0, end: 4 };
+      scene2 = { type: 'space', name: 'Scene 2: Glowing Horizon Sun', start: 4, end: 8 };
+      title = 'MIDNIGHT OVERDRIVE';
+      subtitle = 'TURBO HIGHWAY • 1984';
+      lut = 'cyberpunk';
+      soundtrack = 'cyber-synthwave';
+      cameraMotion = 'dolly-zoom';
+      flare = 55;
+      grain = 25;
+      contrast = 120;
+      saturation = 140;
+      vignette = 25;
+
+    // 7. Space / Black Hole / Singularity / Galaxy / Stars / Astronauts
+    } else if (p.includes('space') || p.includes('singularity') || p.includes('black hole') || p.includes('galaxy') || p.includes('star') || p.includes('planet') || p.includes('cosmos') || p.includes('orbit') || p.includes('spaceship') || p.includes('astronomy')) {
+      theme = 'space';
+      scene1 = { type: 'space', name: 'Scene 1: Cosmic Nebula Drift', start: 0, end: 4 };
+      scene2 = { type: 'singularity', name: 'Scene 2: Event Horizon Singularity', start: 4, end: 8 };
+      title = 'INTERSTELLAR HORIZON';
+      subtitle = 'VOYAGE TO THE EVENT HORIZON';
+      lut = 'teal-orange';
+      soundtrack = 'ambient-space';
+      cameraMotion = 'pan-zoom';
+      flare = 50;
+      grain = 20;
+      contrast = 120;
+      saturation = 120;
+      vignette = 25;
+
+    // 8. Horror / Haunted / Graveyard / Spooky / Ghost
+    } else if (p.includes('horror') || p.includes('spooky') || p.includes('creepy') || p.includes('graveyard') || p.includes('haunted') || p.includes('ghost') || p.includes('zombie') || p.includes('cemetery')) {
+      theme = 'horror';
+      scene1 = { type: 'horror', name: 'Scene 1: Foggy Graveyard Mist', start: 0, end: 4 };
+      scene2 = { type: 'horror', name: 'Scene 2: Moonlit Tombstones', start: 4, end: 8 };
+      title = 'WHISPERS IN THE MIST';
+      subtitle = 'DO NOT LOOK BACK';
+      lut = 'film-noir';
+      soundtrack = 'ambient-space';
+      cameraMotion = 'handheld';
+      flare = 15;
+      grain = 40;
+      contrast = 135;
+      saturation = 70;
+      vignette = 35;
+
+    // 9. Nature / Mountains / Forest / Alpine / Sunrise
+    } else if (p.includes('nature') || p.includes('mountain') || p.includes('forest') || p.includes('alpine') || p.includes('trees') || p.includes('sunrise') || p.includes('landscape') || p.includes('river')) {
+      theme = 'nature';
+      scene1 = { type: 'nature', name: 'Scene 1: Alpine Sunrise Flight', start: 0, end: 4 };
+      scene2 = { type: 'space', name: 'Scene 2: High Mountain Ridge', start: 4, end: 8 };
+      title = 'THE HIGH PASS';
+      subtitle = 'UNTOUCHED WILDERNESS IN 4K';
+      lut = 'golden-hour';
+      soundtrack = 'epic-orchestral';
+      cameraMotion = 'pan-zoom';
+      flare = 40;
+      grain = 15;
+      contrast = 110;
+      saturation = 120;
+      vignette = 20;
+
+    // 10. Matrix / Hack / Code / Computer
+    } else if (p.includes('matrix') || p.includes('code') || p.includes('hack') || p.includes('terminal') || p.includes('data') || p.includes('mainframe')) {
+      theme = 'matrix';
+      scene1 = { type: 'matrix', name: 'Scene 1: Cascading Data Stream', start: 0, end: 4 };
+      scene2 = { type: 'grid', name: 'Scene 2: Core Mainframe Breach', start: 4, end: 8 };
+      title = 'CORE BREACH';
+      subtitle = 'DATA ENCRYPTION COMPROMISED';
+      lut = 'cyberpunk';
+      soundtrack = 'cyber-synthwave';
+      cameraMotion = 'dolly-zoom';
+      flare = 35;
+      grain = 25;
+      contrast = 130;
+      saturation = 110;
+      vignette = 30;
+
+    // 11. Car Racing / Pursuit / Chase / Highway
+    } else if (p.includes('car') || p.includes('race') || p.includes('racing') || p.includes('chase') || p.includes('highway') || p.includes('speed') || p.includes('drift')) {
+      theme = 'synthwave';
+      scene1 = { type: 'synthwave', name: 'Scene 1: High Speed Highway Pursuit', start: 0, end: 4 };
+      scene2 = { type: 'grid', name: 'Scene 2: Turbo Boost Acceleration', start: 4, end: 8 };
+      title = 'MIDNIGHT PURSUIT';
+      subtitle = 'RADAR LOCKED • MAXIMUM OVERDRIVE';
+      lut = 'cyberpunk';
+      soundtrack = 'cyber-synthwave';
+      cameraMotion = 'handheld';
+      flare = 60;
+      grain = 25;
+      contrast = 125;
+      saturation = 135;
+      vignette = 25;
+
+    // 12. ONLY if specifically asking for walking / pedestrians / crowd:
+    } else if (p.includes('walk') || p.includes('walking') || p.includes('pedestrian') || p.includes('crowd') || p.includes('sidewalk') || p.includes('crosswalk') || p.includes('stroll')) {
       theme = 'people-walking';
       scene1 = { type: 'people-walking', name: 'Scene 1: Real People Walking on City Street', start: 0, end: 4 };
       scene2 = { type: 'city-street', name: 'Scene 2: City Street & Crosswalk Pedestrians', start: 4, end: 8 };
       title = 'THE CITY WALKERS';
-      subtitle = 'AN ACTUAL LIVE-ACTION MOVIE • REAL PEOPLE WALKING';
+      subtitle = 'LIVE-ACTION CINEMA • REAL PEOPLE WALKING';
       lut = 'teal-orange';
       soundtrack = 'lofi-chill';
       cameraMotion = 'pan-zoom';
@@ -3009,132 +3187,25 @@
       contrast = 105;
       saturation = 115;
       vignette = 15;
-    } else if (p.includes('samurai') || p.includes('japan') || p.includes('ninja') || p.includes('blade') || p.includes('cherry blossom') || p.includes('bamboo') || p.includes('katana') || p.includes('duel')) {
-      theme = 'samurai';
-      scene1 = { type: 'samurai', name: 'Scene 1: Bamboo Rain Standoff', start: 0, end: 4 };
-      scene2 = { type: 'samurai-climax', name: 'Scene 2: Thunder Strike Climax', start: 4, end: 8 };
-      title = 'THE RAIN BLADE';
-      subtitle = 'AN HONOR WRITTEN IN STEEL • DIRECTED BY CAMARA';
-      lut = 'film-noir';
-      soundtrack = 'epic-orchestral';
-      cameraMotion = 'handheld';
-      flare = 30;
-      grain = 45;
-      contrast = 135;
-      saturation = 80;
-      vignette = 65;
-    } else if (p.includes('ocean') || p.includes('underwater') || p.includes('sea') || p.includes('sub') || p.includes('jellyfish') || p.includes('bioluminescent') || p.includes('abyss') || p.includes('trench')) {
-      theme = 'ocean';
-      scene1 = { type: 'ocean', name: 'Scene 1: Mariana Abyss Descent', start: 0, end: 4 };
-      scene2 = { type: 'ocean-deep', name: 'Scene 2: Bioluminescent Encounter', start: 4, end: 8 };
-      title = 'ABYSSAL REALM';
-      subtitle = 'DEPTHS OF THE UNKNOWN • IN ULTRA HD';
-      lut = 'teal-orange';
-      soundtrack = 'ambient-space';
-      cameraMotion = 'pan-zoom';
-      flare = 60;
-      grain = 20;
-      contrast = 125;
-      saturation = 130;
-      vignette = 55;
-    } else if (p.includes('mars') || p.includes('desert') || p.includes('dune') || p.includes('sand') || p.includes('rover') || p.includes('wasteland')) {
-      theme = 'desert';
-      scene1 = { type: 'desert', name: 'Scene 1: Red Dunes Expedition', start: 0, end: 4 };
-      scene2 = { type: 'desert-storm', name: 'Scene 2: Martian Dust Storm', start: 4, end: 8 };
-      title = 'RED DUNE PROTOCOL';
-      subtitle = 'SURVIVING THE OUTPOST • 4K CINEMA';
-      lut = 'golden-hour';
-      soundtrack = 'ambient-space';
-      cameraMotion = 'dolly-zoom';
-      flare = 45;
-      grain = 35;
-      contrast = 120;
-      saturation = 135;
-      vignette = 45;
-    } else if (p.includes('fantasy') || p.includes('dragon') || p.includes('castle') || p.includes('siege') || p.includes('fire') || p.includes('medieval') || p.includes('knight')) {
-      theme = 'fantasy';
-      scene1 = { type: 'fantasy', name: 'Scene 1: Fortress Ramparts', start: 0, end: 4 };
-      scene2 = { type: 'fantasy-dragon', name: 'Scene 2: Dragon Fire Flight', start: 4, end: 8 };
-      title = 'ASHES OF THE CITADEL';
-      subtitle = 'THE DRAGON SAGA • CHAPTER ONE';
-      lut = 'vintage-kodak';
-      soundtrack = 'epic-orchestral';
-      cameraMotion = 'orbital';
-      flare = 65;
-      grain = 30;
-      contrast = 130;
-      saturation = 140;
-      vignette = 60;
-    } else if (p.includes('horror') || p.includes('haunted') || p.includes('ghost') || p.includes('graveyard') || p.includes('creepy') || p.includes('vampire')) {
-      theme = 'horror';
-      scene1 = { type: 'horror', name: 'Scene 1: Foggy Graveyard Mist', start: 0, end: 4 };
-      scene2 = { type: 'horror', name: 'Scene 2: The Moonlit Manor', start: 4, end: 8 };
-      title = 'WHISPERS IN THE MIST';
-      subtitle = 'DO NOT LOOK BACK • DIRECTED BY CAMARA';
-      lut = 'sci-fi-matrix';
-      soundtrack = 'epic-orchestral';
-      cameraMotion = 'handheld';
-      flare = 20;
-      grain = 55;
-      contrast = 140;
-      saturation = 75;
-      vignette = 75;
-    } else if (p.includes('cyber') || p.includes('neon') || p.includes('tokyo') || p.includes('city') || p.includes('car') || p.includes('chase') || p.includes('mech')) {
+
+    // 13. Fallback for custom / unique prompts (Cyberpunk city or Space)
+    } else {
+      // Create a dynamic title from the user prompt
+      const words = raw.split(/\s+/).filter(w => w.length > 2);
+      const titleWords = words.slice(0, 3).map(w => w.toUpperCase()).join(' ');
+      title = titleWords || 'CINEMATIC VISION';
+      subtitle = `AI DIRECTED: "${raw.slice(0, 45)}"`;
       theme = 'cyberpunk';
-      scene1 = { type: 'cyberpunk', name: 'Scene 1: Neon Megacity Skyline', start: 0, end: 4 };
-      scene2 = { type: 'grid', name: 'Scene 2: High Speed Pursuit', start: 4, end: 8 };
-      title = 'NEO TOKYO 2099';
-      subtitle = 'DISTRICT 09 • NO SURRENDER';
-      lut = 'cyberpunk';
-      soundtrack = 'cyber-synthwave';
-      cameraMotion = 'handheld';
-      flare = 75;
-      grain = 40;
-      contrast = 135;
-      saturation = 145;
-      vignette = 55;
-    } else if (p.includes('retro') || p.includes('synth') || p.includes('80s') || p.includes('arcade') || p.includes('drive')) {
-      theme = 'synthwave';
-      scene1 = { type: 'synthwave', name: 'Scene 1: Neon Wireframe Grid', start: 0, end: 4 };
-      scene2 = { type: 'space', name: 'Scene 2: Glowing Horizon Sun', start: 4, end: 8 };
-      title = 'MIDNIGHT OVERDRIVE';
-      subtitle = 'ANALOG DREAMS • 1984';
-      lut = 'vintage-kodak';
-      soundtrack = 'cyber-synthwave';
-      cameraMotion = 'orbital';
-      flare = 55;
-      grain = 45;
-      contrast = 115;
-      saturation = 135;
-      vignette = 45;
-    } else if (p.includes('nature') || p.includes('mountain') || p.includes('forest') || p.includes('drone') || p.includes('eagle') || p.includes('sunrise') || p.includes('dawn')) {
-      theme = 'nature';
-      scene1 = { type: 'nature', name: 'Scene 1: Alpine Sunrise Flight', start: 0, end: 4 };
-      scene2 = { type: 'space', name: 'Scene 2: High Mountain Ridge', start: 4, end: 8 };
-      title = 'THE HIGH PASS';
-      subtitle = 'UNTOUCHED WILDERNESS • 4K DOCUMENTARY';
-      lut = 'golden-hour';
+      scene1 = { type: 'cyberpunk', name: `Scene 1: ${title}`, start: 0, end: 4 };
+      scene2 = { type: 'space', name: 'Scene 2: Cinematic Climax', start: 4, end: 8 };
+      lut = 'teal-orange';
       soundtrack = 'epic-orchestral';
       cameraMotion = 'pan-zoom';
       flare = 45;
-      grain = 15;
-      contrast = 110;
-      saturation = 120;
-      vignette = 40;
-    } else if (p.includes('code') || p.includes('matrix') || p.includes('hack') || p.includes('vault') || p.includes('mainframe')) {
-      theme = 'matrix';
-      scene1 = { type: 'matrix', name: 'Scene 1: Cascading Data Stream', start: 0, end: 4 };
-      scene2 = { type: 'grid', name: 'Scene 2: Core Mainframe Breach', start: 4, end: 8 };
-      title = 'CORE BREACH';
-      subtitle = 'ENCRYPTION COMPROMISED • IN 4K';
-      lut = 'sci-fi-matrix';
-      soundtrack = 'cyber-synthwave';
-      cameraMotion = 'dolly-zoom';
-      flare = 35;
-      grain = 30;
-      contrast = 140;
-      saturation = 90;
-      vignette = 65;
+      grain = 20;
+      contrast = 115;
+      saturation = 125;
+      vignette = 20;
     }
 
     return {
@@ -3151,11 +3222,11 @@
       saturation,
       vignette,
       cinemaBars,
-      prompt
+      prompt: raw
     };
   }
 
-  function executeAiMovieDirector(rawPrompt) {
+    function executeAiMovieDirector(rawPrompt) {
     const prompt = (rawPrompt || '').trim() || SURPRISE_PROMPTS[0];
     const movieConfig = analyzePromptToMovie(prompt);
 
@@ -3287,13 +3358,25 @@
       studioSection.scrollIntoView({ behavior: 'smooth' });
     }
 
+    // Update active picture pill in the top bar
+    document.querySelectorAll('.pic-pill-btn').forEach(btn => {
+      btn.classList.toggle('active', btn.dataset.pic === cfg.theme);
+    });
+
+    const helperBanner = document.querySelector('.picture-helper-banner');
+    if (helperBanner) {
+      helperBanner.innerHTML = `<span class="sparkle-icon">🎬</span><span><strong>Generated Movie Active:</strong> Now directing <em>"${cfg.title}"</em> in full motion! Type any other prompt to change scenes anytime.</span>`;
+    }
+
     // Auto-play the newly generated movie!
     state.currentTime = 0;
     state.isPlaying = true;
     playIcon.classList.add('hidden');
     pauseIcon.classList.remove('hidden');
     canvasPlayOverlay.classList.remove('show-overlay');
-    audio.startSoundtrackLoop();
+    if (!state.isMuted) {
+      audio.startSoundtrackLoop();
+    }
   }
 
   // =========================================================================
@@ -3938,11 +4021,11 @@
       console.warn('setAspectRatio notice:', e);
     }
 
-    // Auto-play immediately - Mind of its own!
-    state.isPlaying = true;
-    if (playIcon) playIcon.classList.add('hidden');
-    if (pauseIcon) pauseIcon.classList.remove('hidden');
-    if (canvasPlayOverlay) canvasPlayOverlay.classList.remove('show-overlay');
+    // Start paused - Wait for user prompt!
+    state.isPlaying = false;
+    if (playIcon) playIcon.classList.remove('hidden');
+    if (pauseIcon) pauseIcon.classList.add('hidden');
+    if (canvasPlayOverlay) canvasPlayOverlay.classList.add('show-overlay');
 
     // Immediately render frame 0 right on load!
     try {

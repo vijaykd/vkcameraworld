@@ -91,6 +91,7 @@
         <!-- Inspiring Quick Prompt Inspiration Chips -->
         <div class="hero-prompt-chips">
           <span class="chips-label">Popular Prompts:</span>
+          <button class="prompt-chip" data-prompt="Real movie footage of people walking down a busy city street in high-definition cinematography">🎥 Real People Walking</button>
           <button class="prompt-chip" data-prompt="Samurai master standing in bamboo forest under pouring rain, lightning storm, and falling pink cherry blossoms">⚔️ Samurai Storm</button>
           <button class="prompt-chip" data-prompt="Deep sea exploration submarine diving into Mariana trench encountering giant bioluminescent jellyfish">🌊 Deep Ocean Glow</button>
           <button class="prompt-chip" data-prompt="Cyberpunk flying car chase through neon skyscrapers of Tokyo 2099 in rain">🌆 Cyberpunk Pursuit</button>
@@ -447,16 +448,16 @@
                 <div class="hud-watermark-free">NO WATERMARK</div>
               </div>
 
-              <!-- Center Play/Pause Overlay Icon when paused -->
-              <div class="canvas-play-overlay" id="canvas-play-overlay">
+              <!-- Center Play/Pause Overlay Icon when waiting for prompt or paused -->
+              <div class="canvas-play-overlay show-overlay" id="canvas-play-overlay">
                 <div class="play-prompt-card">
                   <div class="play-circle-glow">
                     <svg width="34" height="34" viewBox="0 0 24 24" fill="white">
                       <polygon points="5 3 19 12 5 21 5 3"></polygon>
                     </svg>
                   </div>
-                  <span class="play-prompt-text">▶ Click Anywhere to Play Video</span>
-                  <span class="play-prompt-hint">Or type any prompt above to generate a new movie</span>
+                  <span class="play-prompt-text">🎬 Waiting For Your Movie Prompt</span>
+                  <span class="play-prompt-hint">Type what you want to see above and click "Make My Movie" to generate &amp; play!</span>
                 </div>
               </div>
             </div>
@@ -514,8 +515,8 @@
 
             <!-- Helpful picture indicator badge -->
             <div class="picture-helper-banner">
-              <span class="sparkle-icon">🎬</span>
-              <span><strong>Full Video Picture Active:</strong> The movie picture is rendering live with zero effort! Click any movie picture above to switch scenes instantly, or drop in your own picture.</span>
+              <span class="sparkle-icon">✨</span>
+              <span><strong>Waiting for prompt:</strong> Type what you want to see above (e.g. <em>"people walking on the street"</em> or <em>"cyberpunk car chase"</em>) to generate and watch your movie!</span>
             </div>
           </div>
 
@@ -1146,8 +1147,8 @@
   </footer>
 
   <!-- Scripts with cache busters -->
-  <script src="scripts/scenes.js?v=8.0"></script>
-  <script src="scripts/templates.js?v=8.0"></script>
-  <script src="scripts/app.js?v=8.0"></script>
+  <script src="scripts/scenes.js?v=10.0"></script>
+  <script src="scripts/templates.js?v=10.0"></script>
+  <script src="scripts/app.js?v=10.0"></script>
 </body>
 </html>

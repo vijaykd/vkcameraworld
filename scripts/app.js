@@ -3299,7 +3299,10 @@
     }, 280);
   }
 
-  function applyGeneratedMovieToStudio(cfg) {
+  function applyGeneratedMovieToStudio(cfg, skipSave = false) {
+    if (!skipSave) {
+      saveMovieToMyLibrary(cfg);
+    }
     projectTitleInput.value = `${cfg.title} - Camara AI Film`;
     state.activeScenes = cfg.scenes;
     state.titleText = cfg.title;
@@ -3376,6 +3379,589 @@
     canvasPlayOverlay.classList.remove('show-overlay');
     if (!state.isMuted) {
       audio.startSoundtrackLoop();
+    }
+  }
+
+  // =========================================================================
+  // DISNEY+ STREAMING HUB & "MOVIES YOU'VE DONE" LIBRARY
+  // =========================================================================
+
+  const STORAGE_KEY_MY_MOVIES = 'camara_my_movies_v1';
+
+  const DEFAULT_MY_MOVIES = [
+    {
+      id: 'movie-walking-nyc',
+      title: 'The City Walkers: Streets of New York',
+      prompt: 'people walking in a city like a movie',
+      theme: 'people-walking',
+      genre: 'LIVE ACTION CINEMA',
+      duration: '0:30',
+      date: 'Today',
+      scenes: [
+        { name: 'Scene 1: 5th Avenue Pedestrian Rush', dur: 15, theme: 'people-walking' },
+        { name: 'Scene 2: Golden Hour Street Crosswalk', dur: 15, theme: 'people-walking' }
+      ],
+      lut: 'teal-orange',
+      soundtrack: 'lofi-chill',
+      cameraMotion: 'pan-zoom',
+      subtitle: 'ELENA: "Then let\'s keep walking..."',
+      grain: 15,
+      flare: 25,
+      contrast: 105,
+      saturation: 115,
+      vignette: 15,
+      cinemaBars: true
+    },
+    {
+      id: 'movie-dragon-realm',
+      title: 'Realm of the Crimson Dragon',
+      prompt: 'epic dragon flying over castle fantasy movie',
+      theme: 'fantasy',
+      genre: 'HIGH FANTASY',
+      duration: '0:30',
+      date: 'Yesterday',
+      scenes: [
+        { name: 'Scene 1: Dragon Over the Citadel', dur: 15, theme: 'fantasy' },
+        { name: 'Scene 2: Ancient Towers in Flame', dur: 15, theme: 'fantasy' }
+      ],
+      lut: 'warm-vintage',
+      soundtrack: 'epic-hybrid',
+      cameraMotion: 'zoom-in',
+      subtitle: 'ARAGORN: "The sky belongs to the ancients..."',
+      grain: 25,
+      flare: 45,
+      contrast: 120,
+      saturation: 125,
+      vignette: 45,
+      cinemaBars: true
+    },
+    {
+      id: 'movie-cyberpunk-2099',
+      title: 'Neo-Tokyo: Cyberpunk 2099',
+      prompt: 'cyberpunk rainy city neon skyscrapers night thriller',
+      theme: 'cyberpunk',
+      genre: 'SCI-FI THRILLER',
+      duration: '0:30',
+      date: '2 Days Ago',
+      scenes: [
+        { name: 'Scene 1: Neon Downpour in Sector 7', dur: 15, theme: 'cyberpunk' },
+        { name: 'Scene 2: Hologram Alleyways', dur: 15, theme: 'cyberpunk' }
+      ],
+      lut: 'cyber-neon',
+      soundtrack: 'synthwave-80s',
+      cameraMotion: 'tilt-up',
+      subtitle: 'KAI: "In a city of chrome, rain is the only truth."',
+      grain: 15,
+      flare: 55,
+      contrast: 130,
+      saturation: 135,
+      vignette: 40,
+      cinemaBars: true
+    },
+    {
+      id: 'movie-samurai-blade',
+      title: 'Shadow of the Katana: Autumn Mist',
+      prompt: 'samurai warrior with katana in falling autumn leaves',
+      theme: 'samurai',
+      genre: 'MARTIAL LEGEND',
+      duration: '0:30',
+      date: '3 Days Ago',
+      scenes: [
+        { name: 'Scene 1: Duel at the Temple Gates', dur: 15, theme: 'samurai' },
+        { name: 'Scene 2: Cherry Petals in the Wind', dur: 15, theme: 'samurai' }
+      ],
+      lut: 'bleach-bypass',
+      soundtrack: 'orchestral-strings',
+      cameraMotion: 'handheld-organic',
+      subtitle: 'KENSHIN: "The wind remembers the sword\'s oath."',
+      grain: 30,
+      flare: 25,
+      contrast: 125,
+      saturation: 90,
+      vignette: 50,
+      cinemaBars: true
+    }
+  ];
+
+  const TRENDING_DISNEY_MOVIES = [
+    {
+      id: 'trending-space-odyssey',
+      title: 'Interstellar Voyage: Nebula Core',
+      prompt: 'epic space station orbiting glowing nebula starship',
+      theme: 'space',
+      genre: 'COSMIC SCI-FI',
+      duration: '0:30',
+      badge: 'POPULAR',
+      scenes: [
+        { name: 'Scene 1: Approaching the Orion Gate', dur: 15, theme: 'space' },
+        { name: 'Scene 2: Quantum Jump at Dawn', dur: 15, theme: 'space' }
+      ],
+      lut: 'deep-blue',
+      soundtrack: 'deep-space',
+      cameraMotion: 'drone-orbit',
+      subtitle: 'COMMANDER: "All telemetry locked on the singularity."',
+      grain: 10,
+      flare: 50,
+      contrast: 115,
+      saturation: 120,
+      vignette: 35,
+      cinemaBars: true
+    },
+    {
+      id: 'trending-ocean-abyss',
+      title: 'The Silent Abyss: Mariana Trench',
+      prompt: 'deep ocean bioluminescent coral submarine underwater mystery',
+      theme: 'ocean',
+      genre: 'NATURE CINEMA',
+      duration: '0:30',
+      badge: 'TRENDING #1',
+      scenes: [
+        { name: 'Scene 1: Bioluminescent Reef Awakening', dur: 15, theme: 'ocean' },
+        { name: 'Scene 2: Descent into the Marianas', dur: 15, theme: 'ocean' }
+      ],
+      lut: 'underwater',
+      soundtrack: 'ambient-chill',
+      cameraMotion: 'pan-left',
+      subtitle: 'NARRATOR: "Deep beneath the sunlight, an ancient realm breathes."',
+      grain: 20,
+      flare: 35,
+      contrast: 120,
+      saturation: 130,
+      vignette: 45,
+      cinemaBars: true
+    },
+    {
+      id: 'trending-car-chase',
+      title: 'Nitro Velocity: Midnight Pursuit',
+      prompt: 'fast sports car drifting city tunnel high speed movie action',
+      theme: 'car-chase',
+      genre: 'ACTION BLOCKBUSTER',
+      duration: '0:30',
+      badge: 'ACTION PICK',
+      scenes: [
+        { name: 'Scene 1: Neon Underpass Drift', dur: 15, theme: 'car-chase' },
+        { name: 'Scene 2: High Speed Highway Escape', dur: 15, theme: 'car-chase' }
+      ],
+      lut: 'teal-orange',
+      soundtrack: 'synthwave-80s',
+      cameraMotion: 'shake-action',
+      subtitle: 'PILOT: "RPM pinned at 8,000. Hang on!"',
+      grain: 15,
+      flare: 60,
+      contrast: 135,
+      saturation: 140,
+      vignette: 30,
+      cinemaBars: true
+    },
+    {
+      id: 'trending-mars-dunes',
+      title: 'Dunes of Ares: Colony One',
+      prompt: 'mars rover expedition red desert sandstorm sci-fi epic',
+      theme: 'desert',
+      genre: 'ADVENTURE',
+      duration: '0:30',
+      badge: 'NEW RELEASE',
+      scenes: [
+        { name: 'Scene 1: Sandstorm over Olympus Mons', dur: 15, theme: 'desert' },
+        { name: 'Scene 2: Outpost Sunset on the Red Planet', dur: 15, theme: 'desert' }
+      ],
+      lut: 'warm-vintage',
+      soundtrack: 'epic-hybrid',
+      cameraMotion: 'pan-right',
+      subtitle: 'ROVER AI: "Dust density reaching critical threshold."',
+      grain: 28,
+      flare: 40,
+      contrast: 125,
+      saturation: 110,
+      vignette: 40,
+      cinemaBars: true
+    }
+  ];
+
+  function escapeHtml(str) {
+    if (!str) return '';
+    return String(str)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#39;');
+  }
+
+  function getGenreLabel(theme) {
+    const map = {
+      'people-walking': 'LIVE ACTION CINEMA',
+      'cyberpunk': 'CYBERPUNK SCI-FI',
+      'samurai': 'SAMURAI MARTIAL EPIC',
+      'space': 'DEEP SPACE ODYSSEY',
+      'fantasy': 'HIGH FANTASY',
+      'ocean': 'DEEP OCEAN NATURE',
+      'desert': 'DESERT EXPEDITION',
+      'synthwave': '80s SYNTHWAVE',
+      'matrix': 'CYBER DATA THRILLER',
+      'car-chase': 'ACTION BLOCKBUSTER'
+    };
+    return map[theme] || 'CAMARA ORIGINAL CINEMA';
+  }
+
+  function getThemeGradient(theme) {
+    const map = {
+      'people-walking': 'linear-gradient(135deg, #1e3a8a, #0f172a)',
+      'fantasy': 'linear-gradient(135deg, #7c2d12, #450a0a)',
+      'cyberpunk': 'linear-gradient(135deg, #0e7490, #1e1b4b)',
+      'samurai': 'linear-gradient(135deg, #991b1b, #1f2937)',
+      'space': 'linear-gradient(135deg, #3b0764, #030712)',
+      'ocean': 'linear-gradient(135deg, #064e3b, #083344)',
+      'desert': 'linear-gradient(135deg, #9a3412, #431407)',
+      'synthwave': 'linear-gradient(135deg, #831843, #020617)'
+    };
+    return map[theme] || 'linear-gradient(135deg, #1e293b, #0f172a)';
+  }
+
+  function getMyMoviesList() {
+    try {
+      const stored = localStorage.getItem(STORAGE_KEY_MY_MOVIES);
+      if (stored) {
+        const parsed = JSON.parse(stored);
+        if (Array.isArray(parsed) && parsed.length > 0) {
+          return parsed;
+        }
+      }
+    } catch (e) {
+      console.warn('Error reading stored movies:', e);
+    }
+    // Seed default starter movies
+    try {
+      localStorage.setItem(STORAGE_KEY_MY_MOVIES, JSON.stringify(DEFAULT_MY_MOVIES));
+    } catch (e) {}
+    return DEFAULT_MY_MOVIES.slice();
+  }
+
+  function saveMovieToMyLibrary(cfg) {
+    if (!cfg || !cfg.title) return;
+    try {
+      const list = getMyMoviesList();
+      const existingIdx = list.findIndex(m => m.title.trim().toLowerCase() === cfg.title.trim().toLowerCase());
+      
+      const themeKey = cfg.theme || 'people-walking';
+      const newMovie = {
+        id: 'movie-' + Date.now() + '-' + Math.random().toString(36).substr(2, 5),
+        title: cfg.title,
+        prompt: cfg.prompt || cfg.title,
+        theme: themeKey,
+        genre: getGenreLabel(themeKey),
+        duration: '0:30',
+        date: 'Just Now',
+        scenes: cfg.scenes || [
+          { name: 'Scene 1: ' + cfg.title, dur: 15, theme: themeKey },
+          { name: 'Scene 2: Cinematic Climax', dur: 15, theme: themeKey }
+        ],
+        lut: cfg.lut || 'teal-orange',
+        soundtrack: cfg.soundtrack || 'lofi-chill',
+        cameraMotion: cfg.cameraMotion || 'pan-zoom',
+        subtitle: cfg.subtitle || '',
+        grain: cfg.grain !== undefined ? cfg.grain : 15,
+        flare: cfg.flare !== undefined ? cfg.flare : 25,
+        contrast: cfg.contrast !== undefined ? cfg.contrast : 110,
+        saturation: cfg.saturation !== undefined ? cfg.saturation : 115,
+        vignette: cfg.vignette !== undefined ? cfg.vignette : 15,
+        cinemaBars: cfg.cinemaBars !== false
+      };
+
+      if (existingIdx !== -1) {
+        list.splice(existingIdx, 1);
+      }
+      list.unshift(newMovie);
+      if (list.length > 30) list.length = 30;
+
+      localStorage.setItem(STORAGE_KEY_MY_MOVIES, JSON.stringify(list));
+      renderMyMoviesCarousel();
+      showDisneyToast(`Saved "${cfg.title}" to Movies You've Done!`);
+    } catch (e) {
+      console.warn('saveMovieToMyLibrary notice:', e);
+    }
+  }
+
+  function deleteMovieFromLibrary(id) {
+    try {
+      let list = getMyMoviesList();
+      list = list.filter(m => m.id !== id);
+      localStorage.setItem(STORAGE_KEY_MY_MOVIES, JSON.stringify(list));
+      renderMyMoviesCarousel();
+      showDisneyToast('Movie removed from your library.');
+    } catch (e) {
+      console.warn('deleteMovieFromLibrary notice:', e);
+    }
+  }
+
+  function showDisneyToast(msg) {
+    const existing = document.querySelector('.disney-toast');
+    if (existing) existing.remove();
+    const toast = document.createElement('div');
+    toast.className = 'disney-toast';
+    toast.innerHTML = `<span>✨</span><span>${msg}</span>`;
+    document.body.appendChild(toast);
+    setTimeout(() => {
+      if (toast && toast.parentNode) toast.remove();
+    }, 4000);
+  }
+
+  function getCardThumbStyle(movie) {
+    const themeKey = movie.theme || 'people-walking';
+    let picUri = '';
+    if (typeof CINEMA_PICTURES !== 'undefined') {
+      if (CINEMA_PICTURES[themeKey]) {
+        picUri = CINEMA_PICTURES[themeKey];
+      } else if (themeKey.includes('walk') && CINEMA_PICTURES['movie-walk']) {
+        picUri = CINEMA_PICTURES['movie-walk'];
+      }
+    }
+    if (picUri) {
+      return `background-image: linear-gradient(180deg, rgba(15,23,42,0.15) 0%, rgba(15,23,42,0.88) 100%), url('${picUri}'); background-size: cover; background-position: center;`;
+    }
+    return `background: ${getThemeGradient(themeKey)};`;
+  }
+
+  function renderMyMoviesCarousel() {
+    const container = document.getElementById('my-movies-carousel');
+    const countBadge = document.getElementById('my-movies-count');
+    if (!container) return;
+
+    const list = getMyMoviesList();
+    if (countBadge) {
+      countBadge.textContent = `${list.length} Film${list.length === 1 ? '' : 's'}`;
+    }
+
+    let html = '';
+    list.forEach(m => {
+      const thumbStyle = getCardThumbStyle(m);
+      html += `
+        <div class="disney-card" data-id="${m.id}" data-type="my-movie">
+          <div class="disney-card-thumb" style="${thumbStyle}">
+            <span class="disney-badge-live">MY MOVIE</span>
+            <span class="disney-duration-badge">${m.duration || '0:30'}</span>
+            <div class="disney-card-actions">
+              <button type="button" class="btn btn-primary btn-sm action-play-btn" data-id="${m.id}">▶ Play</button>
+              <button type="button" class="btn btn-secondary btn-sm action-remix-btn" data-id="${m.id}">✨ Remix</button>
+              <button type="button" class="btn btn-secondary btn-sm action-delete-btn" data-id="${m.id}" title="Delete">🗑</button>
+            </div>
+          </div>
+          <div class="disney-card-body">
+            <div class="disney-card-genre">${m.genre || 'CINEMA'}</div>
+            <div class="disney-card-title">${escapeHtml(m.title)}</div>
+            <div class="disney-card-prompt">"${escapeHtml(m.prompt || m.title)}"</div>
+            <div class="disney-card-meta">
+              <span>${m.date || 'Saved'}</span>
+              <span>&bull;</span>
+              <span>4K UHD Cinema</span>
+            </div>
+          </div>
+        </div>
+      `;
+    });
+
+    // Append Add Movie Card at end of carousel
+    html += `
+      <div class="disney-card disney-card-create-new" id="disney-card-create-tile" role="button" tabindex="0">
+        <div class="create-new-icon">✨</div>
+        <div class="create-new-title">Make Your Own Movie</div>
+        <div class="create-new-sub">Type any prompt to direct another movie!</div>
+        <button type="button" class="btn btn-accent btn-sm" style="margin-top: 10px; pointer-events: none;">+ New Movie</button>
+      </div>
+    `;
+
+    container.innerHTML = html;
+  }
+
+  function renderTrendingCarousel() {
+    const container = document.getElementById('trending-movies-carousel');
+    if (!container) return;
+
+    let html = '';
+    TRENDING_DISNEY_MOVIES.forEach(m => {
+      const thumbStyle = getCardThumbStyle(m);
+      html += `
+        <div class="disney-card" data-id="${m.id}" data-type="trending">
+          <div class="disney-card-thumb" style="${thumbStyle}">
+            <span class="disney-badge-live" style="background: linear-gradient(135deg, #ec4899, #8b5cf6); color: #fff;">${m.badge || 'CAMARA+'}</span>
+            <span class="disney-duration-badge">${m.duration || '0:30'}</span>
+            <div class="disney-card-actions">
+              <button type="button" class="btn btn-primary btn-sm action-play-trending-btn" data-id="${m.id}">▶ Play</button>
+              <button type="button" class="btn btn-secondary btn-sm action-remix-trending-btn" data-id="${m.id}">✨ Remix</button>
+            </div>
+          </div>
+          <div class="disney-card-body">
+            <div class="disney-card-genre">${m.genre}</div>
+            <div class="disney-card-title">${escapeHtml(m.title)}</div>
+            <div class="disney-card-prompt">"${escapeHtml(m.prompt)}"</div>
+            <div class="disney-card-meta">
+              <span>Camara+ Original</span>
+              <span>&bull;</span>
+              <span>Dolby Vision</span>
+            </div>
+          </div>
+        </div>
+      `;
+    });
+
+    container.innerHTML = html;
+  }
+
+  function initDisneyHub() {
+    // Initial Render
+    renderMyMoviesCarousel();
+    renderTrendingCarousel();
+
+    // Carousel Scroll Arrows
+    const myPrev = document.getElementById('my-movies-prev');
+    const myNext = document.getElementById('my-movies-next');
+    const myCarousel = document.getElementById('my-movies-carousel');
+
+    if (myPrev && myCarousel) {
+      myPrev.addEventListener('click', () => {
+        myCarousel.scrollBy({ left: -460, behavior: 'smooth' });
+      });
+    }
+    if (myNext && myCarousel) {
+      myNext.addEventListener('click', () => {
+        myCarousel.scrollBy({ left: 460, behavior: 'smooth' });
+      });
+    }
+
+    const trPrev = document.getElementById('trending-movies-prev');
+    const trNext = document.getElementById('trending-movies-next');
+    const trCarousel = document.getElementById('trending-movies-carousel');
+
+    if (trPrev && trCarousel) {
+      trPrev.addEventListener('click', () => {
+        trCarousel.scrollBy({ left: -460, behavior: 'smooth' });
+      });
+    }
+    if (trNext && trCarousel) {
+      trNext.addEventListener('click', () => {
+        trCarousel.scrollBy({ left: 460, behavior: 'smooth' });
+      });
+    }
+
+    // Brand Universe Hub Tiles
+    const brandHubs = document.getElementById('brand-universe-hubs');
+    if (brandHubs) {
+      brandHubs.addEventListener('click', (e) => {
+        const tile = e.target.closest('.brand-tile');
+        if (!tile) return;
+        const hub = tile.dataset.hub;
+        let promptText = '';
+        if (hub === 'cinema') promptText = 'people walking in city streets live action movie';
+        else if (hub === 'fantasy') promptText = 'epic dragon flying over castle fantasy movie';
+        else if (hub === 'starworlds') promptText = 'deep space starship exploring colorful nebula scifi movie';
+        else if (hub === 'legends') promptText = 'samurai warrior with katana in falling autumn leaves';
+        else if (hub === 'heroes') promptText = 'superhero showdown action blockbuster city rooftop';
+
+        if (promptText) {
+          const heroInput = document.getElementById('hero-prompt-input');
+          if (heroInput) heroInput.value = promptText;
+          executeAiMovieDirector(promptText);
+        }
+      });
+    }
+
+    // Event Delegation on "Movies You've Done" Carousel
+    if (myCarousel) {
+      myCarousel.addEventListener('click', (e) => {
+        // 1. Create Tile Click
+        if (e.target.closest('#disney-card-create-tile')) {
+          const heroInput = document.getElementById('hero-prompt-input');
+          if (heroInput) {
+            heroInput.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            heroInput.focus();
+            heroInput.select();
+          }
+          return;
+        }
+
+        // 2. Play Button
+        const playBtn = e.target.closest('.action-play-btn');
+        if (playBtn) {
+          const id = playBtn.dataset.id;
+          const movie = getMyMoviesList().find(m => m.id === id);
+          if (movie) {
+            applyGeneratedMovieToStudio(movie, true);
+            showDisneyToast(`Now Playing: "${movie.title}"`);
+          }
+          return;
+        }
+
+        // 3. Remix Button
+        const remixBtn = e.target.closest('.action-remix-btn');
+        if (remixBtn) {
+          const id = remixBtn.dataset.id;
+          const movie = getMyMoviesList().find(m => m.id === id);
+          if (movie) {
+            const heroInput = document.getElementById('hero-prompt-input');
+            if (heroInput) {
+              heroInput.value = movie.prompt || movie.title;
+              heroInput.scrollIntoView({ behavior: 'smooth', block: 'center' });
+              heroInput.focus();
+            }
+            showDisneyToast(`Remixing "${movie.title}" — tweak prompt and click Make My Movie!`);
+          }
+          return;
+        }
+
+        // 4. Delete Button
+        const deleteBtn = e.target.closest('.action-delete-btn');
+        if (deleteBtn) {
+          const id = deleteBtn.dataset.id;
+          deleteMovieFromLibrary(id);
+          return;
+        }
+      });
+    }
+
+    // Event Delegation on Trending Carousel
+    if (trCarousel) {
+      trCarousel.addEventListener('click', (e) => {
+        const playBtn = e.target.closest('.action-play-trending-btn');
+        if (playBtn) {
+          const id = playBtn.dataset.id;
+          const movie = TRENDING_DISNEY_MOVIES.find(m => m.id === id);
+          if (movie) {
+            applyGeneratedMovieToStudio(movie, true);
+            showDisneyToast(`Now Playing: "${movie.title}"`);
+          }
+          return;
+        }
+
+        const remixBtn = e.target.closest('.action-remix-trending-btn');
+        if (remixBtn) {
+          const id = remixBtn.dataset.id;
+          const movie = TRENDING_DISNEY_MOVIES.find(m => m.id === id);
+          if (movie) {
+            const heroInput = document.getElementById('hero-prompt-input');
+            if (heroInput) {
+              heroInput.value = movie.prompt;
+              heroInput.scrollIntoView({ behavior: 'smooth', block: 'center' });
+              heroInput.focus();
+            }
+            showDisneyToast(`Remixing "${movie.title}" — tweak prompt and click Make My Movie!`);
+          }
+          return;
+        }
+      });
+    }
+
+    // "Make Another Movie" button in section header
+    const makeNewBtn = document.getElementById('disney-create-movie-btn');
+    if (makeNewBtn) {
+      makeNewBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        const heroInput = document.getElementById('hero-prompt-input');
+        if (heroInput) {
+          heroInput.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          heroInput.focus();
+          heroInput.select();
+        }
+      });
     }
   }
 
@@ -4013,6 +4599,12 @@
       initEvents();
     } catch (e) {
       console.error('initEvents notice:', e);
+    }
+
+    try {
+      initDisneyHub();
+    } catch (e) {
+      console.warn('initDisneyHub notice:', e);
     }
 
     try {

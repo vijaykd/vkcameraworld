@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles/main.css">
+  <link rel="stylesheet" href="styles/main.css?v=11.0">
 </head>
 <body class="bg-dark text-light antialiased">
   
@@ -22,11 +22,12 @@
             <rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect>
           </svg>
         </div>
-        <span class="logo-text">Camara<span class="logo-badge">FREE</span></span>
+        <span class="logo-text">Camara<span class="logo-badge" style="background: linear-gradient(135deg, #00d2ff, #3a7bd5); color: #fff; font-weight:800; padding: 2px 7px; border-radius: 4px; margin-left: 4px;">+</span></span>
       </a>
 
       <nav class="nav-links">
         <a href="#studio" class="nav-link active">Online Studio</a>
+        <a href="#my-movies" class="nav-link" style="color: #38bdf8; font-weight: 700;">🎬 Movies You've Done</a>
         <a href="#features" class="nav-link">Features</a>
         <a href="#templates" class="nav-link">Templates</a>
         <a href="#audio-lab" class="nav-link">Royalty-Free Audio</a>
@@ -770,6 +771,80 @@
     </div>
   </div>
 
+  <!-- ========================================================================= -->
+  <!-- DISNEY+ CINEMATIC HUB & "MOVIES YOU'VE DONE" LIBRARY                      -->
+  <!-- ========================================================================= -->
+  <section id="my-movies" class="disney-section">
+    <div class="container">
+      
+      <!-- Studio Universe Brand Hubs (Disney/Pixar/Marvel style) -->
+      <div class="disney-brands-row" id="brand-universe-hubs">
+        <div class="brand-tile" data-hub="cinema" title="Real People Walking in City / Live Action">
+          <div class="brand-tile-icon">🎥</div>
+          <div class="brand-tile-title">CINEMA REAL</div>
+          <div class="brand-tile-sub">Live Action Films</div>
+        </div>
+        <div class="brand-tile" data-hub="fantasy" title="Dragons, Castles & Enchanted Kingdoms">
+          <div class="brand-tile-icon">🏰</div>
+          <div class="brand-tile-title">FANTASY & MAGIC</div>
+          <div class="brand-tile-sub">Mythic Worlds</div>
+        </div>
+        <div class="brand-tile" data-hub="starworlds" title="Deep Space, Cyberpunk & Sci-Fi">
+          <div class="brand-tile-icon">🚀</div>
+          <div class="brand-tile-title">STAR WORLDS</div>
+          <div class="brand-tile-sub">Space & Cyberpunk</div>
+        </div>
+        <div class="brand-tile" data-hub="legends" title="Samurai, Honor & Martial Epics">
+          <div class="brand-tile-icon">⚔️</div>
+          <div class="brand-tile-title">LEGENDS</div>
+          <div class="brand-tile-sub">Samurai & Epics</div>
+        </div>
+        <div class="brand-tile" data-hub="heroes" title="Superheroes, Car Chases & Blockbusters">
+          <div class="brand-tile-icon">💥</div>
+          <div class="brand-tile-title">HEROES & ACTION</div>
+          <div class="brand-tile-sub">Blockbusters</div>
+        </div>
+      </div>
+
+      <!-- ROW 1: Movies You've Done (My Studio Library) -->
+      <div class="disney-row-header">
+        <div class="disney-header-left">
+          <span class="disney-badge">MY STUDIO LIBRARY</span>
+          <h2 class="disney-row-title">🎬 Movies You've Done</h2>
+          <span class="disney-count-badge" id="my-movies-count">4 Films</span>
+        </div>
+        <div class="disney-header-right">
+          <button class="disney-nav-btn prev-btn" id="my-movies-prev" title="Scroll left">‹</button>
+          <button class="disney-nav-btn next-btn" id="my-movies-next" title="Scroll right">›</button>
+          <a href="#hero-prompt-input" class="btn btn-accent btn-sm" id="disney-create-movie-btn" style="padding: 7px 14px; font-size: 0.8rem; margin-left: 10px;">
+            ✨ Make Another Movie
+          </a>
+        </div>
+      </div>
+
+      <div class="disney-movie-carousel" id="my-movies-carousel">
+        <!-- Dynamically rendered by JavaScript -->
+      </div>
+
+      <!-- ROW 2: Featured & Trending Blockbusters on Camara+ -->
+      <div class="disney-row-header" style="margin-top: 50px;">
+        <div class="disney-header-left">
+          <span class="disney-badge" style="background: rgba(236,72,153,0.18); border-color: rgba(236,72,153,0.4); color: #f472b6;">CAMARA+ ORIGINALS</span>
+          <h2 class="disney-row-title">🔥 Featured & Trending Movies</h2>
+        </div>
+        <div class="disney-header-right">
+          <button class="disney-nav-btn prev-btn" id="trending-movies-prev" title="Scroll left">‹</button>
+          <button class="disney-nav-btn next-btn" id="trending-movies-next" title="Scroll right">›</button>
+        </div>
+      </div>
+
+      <div class="disney-movie-carousel" id="trending-movies-carousel">
+        <!-- Dynamically rendered by JavaScript -->
+      </div>
+
+    </div>
+  </section>
+
   <!-- Key Features Section -->
   <section id="features" class="features-section">
     <div class="container">
@@ -1147,8 +1222,8 @@
   </footer>
 
   <!-- Scripts with cache busters -->
-  <script src="scripts/scenes.js?v=10.0"></script>
-  <script src="scripts/templates.js?v=10.0"></script>
-  <script src="scripts/app.js?v=10.0"></script>
+  <script src="scripts/scenes.js?v=11.0"></script>
+  <script src="scripts/templates.js?v=11.0"></script>
+  <script src="scripts/app.js?v=11.0"></script>
 </body>
 </html>

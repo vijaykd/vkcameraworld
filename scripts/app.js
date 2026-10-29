@@ -3966,6 +3966,233 @@
   }
 
   // =========================================================================
+  // AI CO-DIRECTOR & ASSISTANT KNOWLEDGE SYSTEM
+  // =========================================================================
+  function getAiAssistantResponse(userQuery) {
+    const q = (userQuery || '').toLowerCase().trim();
+    
+    // 1. How to make a movie
+    if (q.includes('how') && (q.includes('make') || q.includes('create') || q.includes('start') || q.includes('movie') || q.includes('use'))) {
+      return {
+        text: `Here's how to create your movie in seconds:<br><br>
+1. <strong>Type any prompt</strong> into the box above (e.g. <em>"people walking in city"</em> or <em>"samurai in autumn mist"</em>).<br>
+2. Click <strong>✨ Make My Movie</strong> — our autonomous AI will choreograph the visuals, motion, lighting, and score!<br>
+3. Fine-tune your LUT color grading, audio soundtrack, and aspect ratio.<br>
+4. Click <strong>Export & Download</strong> for a 100% watermark-free HD film!`,
+        actionPrompt: 'people walking in a city like a movie',
+        actionLabel: '🎬 Try Example: The City Walkers'
+      };
+    }
+
+    // 2. People walking / Live action
+    if (q.includes('walk') || q.includes('people') || q.includes('pedestrian') || q.includes('street') || q.includes('live action')) {
+      return {
+        text: `To make an authentic live-action movie of real people walking:<br><br>
+• Type: <strong>"people walking in a city like a movie"</strong><br>
+• Camara switches automatically to real 4K video clips of pedestrian crosswalks, New York street walkers, and atmospheric urban audio.<br>
+• Try applying the <strong>Teal & Orange</strong> or <strong>Golden Hour</strong> LUT for true Hollywood cinema quality!`,
+        actionPrompt: 'people walking in a city like a movie',
+        actionLabel: '🎬 Direct: People Walking Movie'
+      };
+    }
+
+    // 3. Sci-Fi / Space / Galaxy
+    if (q.includes('space') || q.includes('sci-fi') || q.includes('scifi') || q.includes('galaxy') || q.includes('star') || q.includes('planet')) {
+      return {
+        text: `Here is an epic Sci-Fi premise:<br><br>
+<strong>"INTERSTELLAR VOYAGE: THE ORION GATE"</strong><br>
+<em>"A deep space science vessel navigates through a vibrant stellar nebula towards an ancient alien jumpgate."</em><br><br>
+Recommended setup: <strong>Deep Space</strong> soundtrack + <strong>Deep Blue</strong> LUT with <strong>Drone Orbit</strong> camera motion.`,
+        actionPrompt: 'epic deep space starship approaching glowing nebula quantum gate',
+        actionLabel: '🚀 Direct: Deep Space Odyssey'
+      };
+    }
+
+    // 4. Samurai / Martial arts / Japan
+    if (q.includes('samurai') || q.includes('katana') || q.includes('sword') || q.includes('ninja') || q.includes('japan')) {
+      return {
+        text: `Here is a legendary samurai cinema concept:<br><br>
+<strong>"SHADOW OF THE KATANA: TEMPLE OF AUTUMN"</strong><br>
+<em>"A lone master draws his blade as crimson sakura petals and autumn leaves drift in the mountain wind."</em><br><br>
+Recommended setup: <strong>Bleach Bypass</strong> LUT + <strong>Orchestral Strings</strong> score.`,
+        actionPrompt: 'samurai warrior with katana in falling autumn leaves movie',
+        actionLabel: '⚔️ Direct: Samurai Autumn Duel'
+      };
+    }
+
+    // 5. Fantasy / Dragon / Castle
+    if (q.includes('dragon') || q.includes('fantasy') || q.includes('castle') || q.includes('magic') || q.includes('wizard')) {
+      return {
+        text: `Here is a mythical high-fantasy adventure:<br><br>
+<strong>"REALM OF THE CRIMSON DRAGON"</strong><br>
+<em>"Ancient wings cast shadows across stone citadels as fiery embers rise into twilight skies."</em><br><br>
+Recommended setup: <strong>Warm Vintage</strong> LUT + <strong>Epic Hybrid</strong> cinematic orchestral music.`,
+        actionPrompt: 'epic dragon flying over castle fantasy movie',
+        actionLabel: '🐉 Direct: Dragon Over Citadel'
+      };
+    }
+
+    // 6. Cyberpunk / Neon / Futuristic
+    if (q.includes('cyber') || q.includes('cyberpunk') || q.includes('neon') || q.includes('rain') || q.includes('tokyo') || q.includes('future')) {
+      return {
+        text: `Here is a gritty cyberpunk concept:<br><br>
+<strong>"NEO-TOKYO: SECTOR 7 RAIN"</strong><br>
+<em>"Rain slants across towering neon skyscrapers while flying spinner cars illuminate chrome alleyways."</em><br><br>
+Recommended setup: <strong>Cyber Neon</strong> LUT + <strong>Synthwave 80s</strong> pulsing bass.`,
+        actionPrompt: 'cyberpunk rainy city neon skyscrapers night thriller',
+        actionLabel: '🌆 Direct: Cyberpunk 2099'
+      };
+    }
+
+    // 7. Watermark / Free / Cost / Export
+    if (q.includes('watermark') || q.includes('free') || q.includes('cost') || q.includes('price') || q.includes('pay') || q.includes('export')) {
+      return {
+        text: `<strong>100% Free Forever & Zero Watermarks!</strong><br><br>
+Every video you generate or export on Camara is completely clean — no stamps, no logos, no subscription paywalls.<br><br>
+Your art belongs strictly to you. Click <strong>Export & Download</strong> at the bottom of the studio to save in 1080p or 4K right away!`,
+        actionPrompt: '',
+        actionLabel: ''
+      };
+    }
+
+    // 8. Color grading / LUTs / Filters
+    if (q.includes('lut') || q.includes('color') || q.includes('grade') || q.includes('filter') || q.includes('look')) {
+      return {
+        text: `Here is a quick guide to Camara's cinematic LUTs:<br><br>
+• <strong>Teal & Orange:</strong> Hollywood blockbuster standard (contrasts warm subjects with cool cyan).<br>
+• <strong>Cyber Neon:</strong> Vivid magenta and cyan tones for high-energy tech scenes.<br>
+• <strong>Golden Hour:</strong> Warm, nostalgic amber for emotional sunsets.<br>
+• <strong>Bleach Bypass:</strong> High contrast, silver-toned war & thriller look.<br>
+• <strong>Deep Blue:</strong> Crisp, cold oceanic and cosmic grade.`,
+        actionPrompt: '',
+        actionLabel: ''
+      };
+    }
+
+    // 9. Camera motion / Animation
+    if (q.includes('camera') || q.includes('motion') || q.includes('pan') || q.includes('zoom') || q.includes('shake')) {
+      return {
+        text: `Camara features 5 dynamic camera motion engines:<br><br>
+• <strong>Pan & Zoom (Ken Burns):</strong> Gentle cinematic drift ideal for landscapes & walking shots.<br>
+• <strong>Handheld Organic:</strong> Subtle breathing movement for realistic indie drama.<br>
+• <strong>Action Shake:</strong> High-impact camera rumble for car chases & explosions.<br>
+• <strong>Dolly Zoom (Vertigo):</strong> Dramatic psychological suspense.<br>
+• <strong>Drone Orbit:</strong> Expansive sweeping aerial perspective.`,
+        actionPrompt: '',
+        actionLabel: ''
+      };
+    }
+
+    // 10. General / Custom User Prompts
+    const promptWords = userQuery.split(/\s+/).slice(0, 5).join(' ');
+    return {
+      text: `Great concept! I've drafted a cinematic vision for <strong>"${escapeHtml(userQuery)}"</strong>:<br><br>
+<em>"Choreographed visuals, matched color tone, cinematic motion, and synchronized score ready to shoot."</em><br><br>
+Would you like me to direct and load this movie onto your studio screen right now?`,
+      actionPrompt: userQuery,
+      actionLabel: `🎬 Direct: "${promptWords}..."`
+    };
+  }
+
+  function initAiAssistant() {
+    const trigger = document.getElementById('ai-assistant-trigger');
+    const navBtn = document.getElementById('nav-ai-help-btn');
+    const windowEl = document.getElementById('ai-assistant-window');
+    const closeBtn = document.getElementById('ai-assistant-close-btn');
+    const form = document.getElementById('ai-assistant-form');
+    const input = document.getElementById('ai-assistant-input');
+    const messagesContainer = document.getElementById('ai-assistant-messages');
+    const chipsContainer = document.getElementById('ai-quick-chips');
+
+    const toggleWindow = (show) => {
+      if (!windowEl) return;
+      const isVisible = !windowEl.classList.contains('hidden');
+      const targetState = show !== undefined ? show : !isVisible;
+      if (targetState) {
+        windowEl.classList.remove('hidden');
+        if (input) setTimeout(() => input.focus(), 150);
+      } else {
+        windowEl.classList.add('hidden');
+      }
+    };
+
+    if (trigger) trigger.addEventListener('click', () => toggleWindow());
+    if (navBtn) navBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      toggleWindow(true);
+    });
+    if (closeBtn) closeBtn.addEventListener('click', () => toggleWindow(false));
+
+    const appendMessage = (sender, contentHtml, actionPrompt, actionLabel) => {
+      if (!messagesContainer) return;
+      const bubble = document.createElement('div');
+      bubble.className = `ai-bubble ${sender}`;
+      
+      let html = contentHtml;
+      if (actionPrompt && actionLabel) {
+        html += `
+          <div class="ai-action-block">
+            <button type="button" class="ai-action-play-btn" data-prompt="${escapeHtml(actionPrompt)}">
+              ${escapeHtml(actionLabel)}
+            </button>
+          </div>
+        `;
+      }
+      bubble.innerHTML = html;
+      messagesContainer.appendChild(bubble);
+      messagesContainer.scrollTop = messagesContainer.scrollHeight;
+    };
+
+    const handleUserQuery = (queryText) => {
+      const q = (queryText || '').trim();
+      if (!q) return;
+
+      // 1. User message
+      appendMessage('user', escapeHtml(q));
+
+      // 2. Typing / Response delay
+      setTimeout(() => {
+        const response = getAiAssistantResponse(q);
+        appendMessage('assistant', response.text, response.actionPrompt, response.actionLabel);
+      }, 300);
+    };
+
+    if (form) {
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        if (!input) return;
+        const text = input.value;
+        input.value = '';
+        handleUserQuery(text);
+      });
+    }
+
+    if (chipsContainer) {
+      chipsContainer.addEventListener('click', (e) => {
+        const chip = e.target.closest('.ai-chip');
+        if (!chip) return;
+        const q = chip.dataset.query;
+        if (q) handleUserQuery(q);
+      });
+    }
+
+    // Action button clicks inside AI chat bubbles
+    if (messagesContainer) {
+      messagesContainer.addEventListener('click', (e) => {
+        const playBtn = e.target.closest('.ai-action-play-btn');
+        if (!playBtn) return;
+        const promptToRun = playBtn.dataset.prompt;
+        if (promptToRun) {
+          executeAiMovieDirector(promptToRun);
+          if (window.innerWidth < 600) {
+            toggleWindow(false);
+          }
+        }
+      });
+    }
+  }
+
+  // =========================================================================
   // EVENT LISTENERS & SETUP
   // =========================================================================
   function initEvents() {
@@ -4605,6 +4832,12 @@
       initDisneyHub();
     } catch (e) {
       console.warn('initDisneyHub notice:', e);
+    }
+
+    try {
+      initAiAssistant();
+    } catch (e) {
+      console.warn('initAiAssistant notice:', e);
     }
 
     try {

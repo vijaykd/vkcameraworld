@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles/main.css?v=11.0">
+  <link rel="stylesheet" href="styles/main.css?v=12.0">
 </head>
 <body class="bg-dark text-light antialiased">
   
@@ -35,6 +35,9 @@
       </nav>
 
       <div class="header-actions">
+        <button type="button" class="btn btn-secondary" id="nav-ai-help-btn" style="border: 1px solid rgba(56, 189, 248, 0.4); background: rgba(14, 165, 233, 0.12); color: #38bdf8; font-weight: 700; display: flex; align-items: center; gap: 6px; padding: 8px 14px;">
+          <span class="sparkle-icon">✨</span> Ask AI Co-Director
+        </button>
         <a href="#studio" class="btn btn-primary pulse-btn">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
             <polygon points="5 3 19 12 5 21 5 3"></polygon>
@@ -1221,9 +1224,64 @@
     </div>
   </footer>
 
+  <!-- Floating AI Co-Director Help Trigger -->
+  <div class="ai-assistant-trigger" id="ai-assistant-trigger" title="Get help, plot ideas, or let AI direct a movie for you">
+    <div class="ai-trigger-pulse"></div>
+    <span>✨ Ask AI Director</span>
+  </div>
+
+  <!-- Interactive AI Co-Director & Help Window -->
+  <div class="ai-assistant-window hidden" id="ai-assistant-window" role="dialog" aria-label="AI Co-Director Assistant">
+    <!-- Header -->
+    <div class="ai-assistant-header">
+      <div class="ai-header-left">
+        <div class="ai-avatar">
+          🎬
+          <span class="ai-status-indicator" title="Online & Ready"></span>
+        </div>
+        <div class="ai-title-wrap">
+          <h4>Camara AI Director <span style="font-size: 0.7rem; background: rgba(56,189,248,0.2); color: #38bdf8; padding: 1px 6px; border-radius: 4px; font-weight: 700;">PRO</span></h4>
+          <p>Online &bull; Ready to help you make movies</p>
+        </div>
+      </div>
+      <div class="ai-header-actions">
+        <button type="button" class="ai-header-btn" id="ai-assistant-close-btn" title="Close AI Help">✕</button>
+      </div>
+    </div>
+
+    <!-- Messages Container -->
+    <div class="ai-assistant-messages" id="ai-assistant-messages">
+      <div class="ai-bubble assistant">
+        <p>👋 <strong>Hey there filmmaker!</strong> I'm your autonomous <strong>AI Co-Director</strong>.</p>
+        <p>I can help you with anything: writing movie prompts, picking soundtrack moods, fixing scenes, or creating brand new live-action and fantasy films for you!</p>
+        <p>Tap any quick question below or type what you're thinking:</p>
+      </div>
+    </div>
+
+    <!-- Quick Chips / Suggested Prompts -->
+    <div class="ai-quick-chips" id="ai-quick-chips">
+      <button type="button" class="ai-chip" data-query="How do I make a movie?">🎬 How do I make a movie?</button>
+      <button type="button" class="ai-chip" data-query="Make a movie of people walking in the city">🎥 People walking in city</button>
+      <button type="button" class="ai-chip" data-query="Give me an epic sci-fi space idea">🚀 Epic Space Odyssey</button>
+      <button type="button" class="ai-chip" data-query="Suggest a samurai duel scene">⚔️ Samurai duel</button>
+      <button type="button" class="ai-chip" data-query="Suggest a fiery dragon movie">🐉 Dragon kingdom</button>
+      <button type="button" class="ai-chip" data-query="How do I export 4K without watermarks?">⚙️ 4K Free Export?</button>
+    </div>
+
+    <!-- Input Footer -->
+    <div class="ai-assistant-footer">
+      <form id="ai-assistant-form" class="ai-input-wrap">
+        <input type="text" id="ai-assistant-input" placeholder="Ask AI anything (e.g. 'Write a cyberpunk chase scene')..." autocomplete="off" />
+        <button type="submit" class="ai-send-btn" id="ai-assistant-send-btn" title="Send message to AI">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+        </button>
+      </form>
+    </div>
+  </div>
+
   <!-- Scripts with cache busters -->
-  <script src="scripts/scenes.js?v=11.0"></script>
-  <script src="scripts/templates.js?v=11.0"></script>
-  <script src="scripts/app.js?v=11.0"></script>
+  <script src="scripts/scenes.js?v=12.0"></script>
+  <script src="scripts/templates.js?v=12.0"></script>
+  <script src="scripts/app.js?v=12.0"></script>
 </body>
 </html>

@@ -12,7 +12,7 @@
     autoPilot: false, // Waits for your prompt
     autoStoryIndex: 0,
     currentTime: 0,
-    duration: 8.0, // 8 seconds default
+    duration: 120.0, // 2-Minute Feature Film (120 seconds)
     fps: 60,
     aspectRatio: '16:9',
     aspectDims: { width: 1280, height: 720 },
@@ -27,14 +27,12 @@
     masterVolume: 0.0,
     isMuted: true, // MUTED by default to prevent unwanted noise
     cinemaBars: true,
-    titleText: 'WAITING FOR PROMPT',
-    subtitleText: 'TYPE YOUR MOVIE IDEA ABOVE TO GENERATE',
-    titleStyle: 'minimal',
     titleText: 'THE CITY WALKERS',
-    subtitleText: 'LIVE-ACTION CINEMA • REAL PEOPLE WALKING',
+    subtitleText: 'LIVE-ACTION CINEMA • 2-MINUTE FEATURE FILM',
+    titleStyle: 'minimal',
     activeScenes: [
-      { id: 1, type: 'people-walking', name: 'Scene 1: Real People Walking on City Street', start: 0, end: 4 },
-      { id: 2, type: 'city-street', name: 'Scene 2: City Street & Crosswalk Pedestrians', start: 4, end: 8 }
+      { id: 1, type: 'people-walking', name: 'Act 1: Real People Walking on City Street', start: 0, end: 60 },
+      { id: 2, type: 'city-street', name: 'Act 2: City Street & Crosswalk Pedestrians', start: 60, end: 120 }
     ],
     aiPrompt: 'Real movie footage of people walking down a busy city street in 4K cinematography'
   };
@@ -724,34 +722,25 @@
     context.shadowColor = '#000000';
     context.shadowBlur = 12;
 
-    const subTime = t % 8.0;
+    const subTime = t % 120.0;
     let subtitleLine = '[city ambiance, footsteps echo on pavement]';
 
-    if (videoKey === 'city-street') {
-      if (subTime >= 2.5 && subTime < 5.5) {
-        subtitleLine = 'NARRATOR: "Midday in the metropolis. Over 4,000 pedestrians cross every hour."';
-      } else if (subTime >= 5.5) {
-        subtitleLine = 'DIRECTOR: "Hold on the crosswalk — let the crowd move naturally."';
-      }
-    } else if (videoKey === 'actor-walking') {
-      if (subTime >= 2.5 && subTime < 5.5) {
-        subtitleLine = 'ELENA: "They said nobody would notice if I walked away."';
-      } else if (subTime >= 5.5) {
-        subtitleLine = 'MARCUS: "I noticed."';
-      }
-    } else if (videoKey === 'pedestrians') {
-      if (subTime >= 2.5 && subTime < 5.5) {
-        subtitleLine = 'PROTAGONIST: "In the middle of the crowd, everything is clear."';
-      } else if (subTime >= 5.5) {
-        subtitleLine = '[camera tracks wide as pedestrians continue down the avenue]';
-      }
+    if (subTime < 15.0) {
+      subtitleLine = 'DIRECTOR: "Scene 12 — The Walkers of New York, Take 1"';
+    } else if (subTime < 30.0) {
+      subtitleLine = 'ACTOR: "Every person in this crowd has an untold story."';
+    } else if (subTime < 45.0) {
+      subtitleLine = 'ELENA: "Where are we heading next?"';
+    } else if (subTime < 60.0) {
+      subtitleLine = 'MARCUS: "Straight ahead. The light is turning green."';
+    } else if (subTime < 75.0) {
+      subtitleLine = 'NARRATOR: "Midday in the metropolis. Over 4,000 pedestrians cross every hour."';
+    } else if (subTime < 90.0) {
+      subtitleLine = 'ELENA: "They said nobody would notice if I walked away."';
+    } else if (subTime < 105.0) {
+      subtitleLine = 'MARCUS: "I noticed. And I\'m still right here."';
     } else {
-      // people-walking default
-      if (subTime >= 2.5 && subTime < 5.5) {
-        subtitleLine = 'DIRECTOR: "Scene 12 — The Walkers of New York, Take 1"';
-      } else if (subTime >= 5.5) {
-        subtitleLine = 'ACTOR: "Every person in this crowd has an untold story."';
-      }
+      subtitleLine = 'NARRATOR: "Two minutes in the city that never stops moving."';
     }
 
     // Semi-transparent cinema subtitle bar
@@ -2398,21 +2387,34 @@
     if (state.titleStyle === 'none') return;
     const sceneTime = t % state.duration;
 
-    // Show title during first half or second half based on style
-    let opacity = 1;
-    if (sceneTime < 0.6) {
-      opacity = sceneTime / 0.6;
-    } else if (sceneTime > 3.6 && sceneTime < 4.2) {
-      opacity = (4.2 - sceneTime) / 0.6;
-    } else if (sceneTime >= 4.2 && sceneTime < 4.8) {
-      opacity = (sceneTime - 4.2) / 0.6;
-    } else if (sceneTime > 7.4) {
-      opacity = (8.0 - sceneTime) / 0.6;
+    // Show title during opening (0 - 10s), midpoint (56 - 65s), and ending (112 - 120s)
+    let opacity = 0;
+    let title = state.titleText;
+    let sub = state.subtitleText || 'DIRECTED WITH CAMARA STUDIO';
+
+    if (sceneTime < 8.0) {
+      if (sceneTime < 1.2) opacity = sceneTime / 1.2;
+      else if (sceneTime > 6.8) opacity = (8.0 - sceneTime) / 1.2;
+      else opacity = 1;
+      title = state.titleText;
+      sub = state.subtitleText || 'A 2-MINUTE FEATURE FILM';
+    } else if (sceneTime >= 56.0 && sceneTime < 64.0) {
+      const actTime = sceneTime - 56.0;
+      if (actTime < 1.2) opacity = actTime / 1.2;
+      else if (actTime > 6.8) opacity = (8.0 - actTime) / 1.2;
+      else opacity = 1;
+      title = 'ACT II • THE TURNING POINT';
+      sub = state.titleText;
+    } else if (sceneTime >= 112.0) {
+      const finTime = sceneTime - 112.0;
+      if (finTime < 1.2) opacity = finTime / 1.2;
+      else if (sceneTime > 118.5) opacity = (120.0 - sceneTime) / 1.5;
+      else opacity = 1;
+      title = state.titleText;
+      sub = 'DIRECTED WITH CAMARA STUDIO • 4K CINEMA';
     }
     opacity = Math.max(0, Math.min(1, opacity));
-
-    const title = sceneTime < 4.0 ? state.titleText : (state.subtitleText || state.titleText);
-    const sub = sceneTime < 4.0 ? state.subtitleText : 'DIRECTED WITH CAMARA STUDIO';
+    if (opacity <= 0.01) return;
 
     context.save();
     context.globalAlpha = opacity;
@@ -2671,11 +2673,22 @@
     animationFrameId = requestAnimationFrame(mainLoop);
   }
 
+  function formatTimecode(sec) {
+    const totalSec = Math.max(0, sec);
+    const m = Math.floor(totalSec / 60);
+    const s = Math.floor(totalSec % 60);
+    const ms = Math.floor((totalSec % 1) * 100);
+    return `${m < 10 ? '0' : ''}${m}:${s < 10 ? '0' : ''}${s}.${ms < 10 ? '0' : ''}${ms}`;
+  }
+
   function updateTimeReadout() {
-    const sec = Math.floor(state.currentTime);
-    const ms = Math.floor((state.currentTime % 1) * 100);
-    const timeStr = `00:${sec < 10 ? '0' : ''}${sec}.${ms < 10 ? '0' : ''}${ms}`;
-    currentTimeReadout.textContent = timeStr;
+    currentTimeReadout.textContent = formatTimecode(state.currentTime);
+    if (totalTimeReadout) {
+      totalTimeReadout.textContent = formatTimecode(state.duration);
+    }
+    if (timelineDurationDisplay) {
+      timelineDurationDisplay.textContent = `${formatTimecode(state.currentTime)} / ${formatTimecode(state.duration)} (2 Min Film)`;
+    }
 
     // Sync real movie video elements when scrubbing
     for (const v of Object.values(loadedVideos)) {
@@ -2924,13 +2937,15 @@
 
     // Progress counter for duration
     const renderStartTime = Date.now();
-    const renderDurationMs = state.duration * 1000;
+    const lengthSelect = document.getElementById('export-length-select');
+    const targetDuration = lengthSelect ? parseFloat(lengthSelect.value) : state.duration;
+    const renderDurationMs = targetDuration * 1000;
 
     const exportTimer = setInterval(() => {
       const elapsed = Date.now() - renderStartTime;
       const progress = Math.min(100, (elapsed / renderDurationMs) * 100);
       exportBarFill.style.width = `${progress}%`;
-      exportStatusText.textContent = `Directing & rendering frames: ${Math.round(progress)}% (${(elapsed / 1000).toFixed(1)}s / ${state.duration}s)`;
+      exportStatusText.textContent = `Directing & rendering frames: ${Math.round(progress)}% (${(elapsed / 1000).toFixed(1)}s / ${targetDuration}s)`;
 
       if (elapsed >= renderDurationMs) {
         clearInterval(exportTimer);
@@ -2982,8 +2997,8 @@
 
     // Default configuration (Space Odyssey)
     let theme = 'space';
-    let scene1 = { type: 'space', name: 'Scene 1: Nebula Drift', start: 0, end: 4 };
-    let scene2 = { type: 'singularity', name: 'Scene 2: Event Horizon', start: 4, end: 8 };
+    let scene1 = { type: 'space', name: 'Act 1: Nebula Drift', start: 0, end: 60 };
+    let scene2 = { type: 'singularity', name: 'Act 2: Event Horizon', start: 60, end: 120 };
     let title = 'BEYOND THE HORIZON';
     let subtitle = `AI MOVIE • DIRECTED FROM: "${raw}"`;
     let lut = 'teal-orange';
@@ -2999,8 +3014,8 @@
     // 1. Samurai / Ninja / Martial Arts / Ancient Japan
     if (p.includes('samurai') || p.includes('ninja') || p.includes('katana') || p.includes('blade') || p.includes('japan') || p.includes('bamboo') || p.includes('duel') || p.includes('cherry blossom') || p.includes('sword fight')) {
       theme = 'samurai';
-      scene1 = { type: 'samurai', name: 'Scene 1: Bamboo Rain Standoff', start: 0, end: 4 };
-      scene2 = { type: 'samurai-climax', name: 'Scene 2: Thunder Strike Climax', start: 4, end: 8 };
+      scene1 = { type: 'samurai', name: 'Act 1: Bamboo Rain Standoff', start: 0, end: 60 };
+      scene2 = { type: 'samurai-climax', name: 'Act 2: Thunder Strike Climax', start: 60, end: 120 };
       title = 'THE RAIN BLADE';
       subtitle = 'AN HONOR WRITTEN IN STEEL';
       lut = 'film-noir';
@@ -3015,8 +3030,8 @@
     // 2. Fantasy / Dragon / Medieval / Castle / Magic
     } else if (p.includes('dragon') || p.includes('castle') || p.includes('knight') || p.includes('fantasy') || p.includes('magic') || p.includes('fortress') || p.includes('medieval') || p.includes('siege') || p.includes('throne')) {
       theme = 'fantasy';
-      scene1 = { type: 'fantasy', name: 'Scene 1: Fortress Ramparts at Aurora', start: 0, end: 4 };
-      scene2 = { type: 'fantasy-dragon', name: 'Scene 2: Dragon Fire Flight', start: 4, end: 8 };
+      scene1 = { type: 'fantasy', name: 'Act 1: Fortress Ramparts at Aurora', start: 0, end: 60 };
+      scene2 = { type: 'fantasy-dragon', name: 'Act 2: Dragon Fire Flight', start: 60, end: 120 };
       title = 'ASHES OF THE CITADEL';
       subtitle = 'THE DRAGON SAGA • CHAPTER ONE';
       lut = 'golden-hour';
@@ -3031,8 +3046,8 @@
     // 3. Cyberpunk / Future Sci-Fi / Flying Cars / Neo Tokyo
     } else if (p.includes('cyberpunk') || p.includes('cyber') || p.includes('flying car') || p.includes('spinner') || p.includes('tokyo') || p.includes('neo') || p.includes('blade runner') || p.includes('neon') || p.includes('robot') || p.includes('android')) {
       theme = 'cyberpunk';
-      scene1 = { type: 'cyberpunk', name: 'Scene 1: Neon Megacity Skyline', start: 0, end: 4 };
-      scene2 = { type: 'grid', name: 'Scene 2: High Speed Aerocar Pursuit', start: 4, end: 8 };
+      scene1 = { type: 'cyberpunk', name: 'Act 1: Neon Megacity Skyline', start: 0, end: 60 };
+      scene2 = { type: 'grid', name: 'Act 2: High Speed Aerocar Pursuit', start: 60, end: 120 };
       title = 'NEO TOKYO 2099';
       subtitle = 'HIGH-ALTITUDE PURSUIT IN RAIN';
       lut = 'cyberpunk';
@@ -3047,8 +3062,8 @@
     // 4. Deep Ocean / Underwater / Submarine / Jellyfish
     } else if (p.includes('ocean') || p.includes('underwater') || p.includes('sea') || p.includes('sub') || p.includes('submarine') || p.includes('jellyfish') || p.includes('abyss') || p.includes('mariana') || p.includes('deep sea') || p.includes('coral') || p.includes('scuba')) {
       theme = 'ocean';
-      scene1 = { type: 'ocean', name: 'Scene 1: Mariana Abyss Descent', start: 0, end: 4 };
-      scene2 = { type: 'ocean-deep', name: 'Scene 2: Bioluminescent Encounter', start: 4, end: 8 };
+      scene1 = { type: 'ocean', name: 'Act 1: Mariana Abyss Descent', start: 0, end: 60 };
+      scene2 = { type: 'ocean-deep', name: 'Act 2: Bioluminescent Encounter', start: 60, end: 120 };
       title = 'ABYSSAL REALM';
       subtitle = 'EXPLORATION BEYOND SUNLIGHT';
       lut = 'teal-orange';
@@ -3063,8 +3078,8 @@
     // 5. Mars / Desert / Dunes / Rover / Alien Wasteland
     } else if (p.includes('mars') || p.includes('desert') || p.includes('dune') || p.includes('sand') || p.includes('rover') || p.includes('sahara') || p.includes('wasteland') || p.includes('red planet')) {
       theme = 'desert';
-      scene1 = { type: 'desert', name: 'Scene 1: Red Dunes Expedition', start: 0, end: 4 };
-      scene2 = { type: 'desert-storm', name: 'Scene 2: Martian Dust Storm', start: 4, end: 8 };
+      scene1 = { type: 'desert', name: 'Act 1: Red Dunes Expedition', start: 0, end: 60 };
+      scene2 = { type: 'desert-storm', name: 'Act 2: Martian Dust Storm', start: 60, end: 120 };
       title = 'RED DUNE PROTOCOL';
       subtitle = 'OUTPOST ON THE RED PLANET';
       lut = 'golden-hour';
@@ -3079,8 +3094,8 @@
     // 6. Retro 80s Synthwave / Outrun / Grid / Neon Car
     } else if (p.includes('synthwave') || p.includes('retro') || p.includes('outrun') || p.includes('80s') || p.includes('vaporwave') || p.includes('arcade') || p.includes('grid')) {
       theme = 'synthwave';
-      scene1 = { type: 'synthwave', name: 'Scene 1: Neon Wireframe Grid', start: 0, end: 4 };
-      scene2 = { type: 'space', name: 'Scene 2: Glowing Horizon Sun', start: 4, end: 8 };
+      scene1 = { type: 'synthwave', name: 'Act 1: Neon Wireframe Grid', start: 0, end: 60 };
+      scene2 = { type: 'space', name: 'Act 2: Glowing Horizon Sun', start: 60, end: 120 };
       title = 'MIDNIGHT OVERDRIVE';
       subtitle = 'TURBO HIGHWAY • 1984';
       lut = 'cyberpunk';
@@ -3095,8 +3110,8 @@
     // 7. Space / Black Hole / Singularity / Galaxy / Stars / Astronauts
     } else if (p.includes('space') || p.includes('singularity') || p.includes('black hole') || p.includes('galaxy') || p.includes('star') || p.includes('planet') || p.includes('cosmos') || p.includes('orbit') || p.includes('spaceship') || p.includes('astronomy')) {
       theme = 'space';
-      scene1 = { type: 'space', name: 'Scene 1: Cosmic Nebula Drift', start: 0, end: 4 };
-      scene2 = { type: 'singularity', name: 'Scene 2: Event Horizon Singularity', start: 4, end: 8 };
+      scene1 = { type: 'space', name: 'Act 1: Cosmic Nebula Drift', start: 0, end: 60 };
+      scene2 = { type: 'singularity', name: 'Act 2: Event Horizon Singularity', start: 60, end: 120 };
       title = 'INTERSTELLAR HORIZON';
       subtitle = 'VOYAGE TO THE EVENT HORIZON';
       lut = 'teal-orange';
@@ -3111,8 +3126,8 @@
     // 8. Horror / Haunted / Graveyard / Spooky / Ghost
     } else if (p.includes('horror') || p.includes('spooky') || p.includes('creepy') || p.includes('graveyard') || p.includes('haunted') || p.includes('ghost') || p.includes('zombie') || p.includes('cemetery')) {
       theme = 'horror';
-      scene1 = { type: 'horror', name: 'Scene 1: Foggy Graveyard Mist', start: 0, end: 4 };
-      scene2 = { type: 'horror', name: 'Scene 2: Moonlit Tombstones', start: 4, end: 8 };
+      scene1 = { type: 'horror', name: 'Act 1: Foggy Graveyard Mist', start: 0, end: 60 };
+      scene2 = { type: 'horror', name: 'Act 2: Moonlit Tombstones', start: 60, end: 120 };
       title = 'WHISPERS IN THE MIST';
       subtitle = 'DO NOT LOOK BACK';
       lut = 'film-noir';
@@ -3127,8 +3142,8 @@
     // 9. Nature / Mountains / Forest / Alpine / Sunrise
     } else if (p.includes('nature') || p.includes('mountain') || p.includes('forest') || p.includes('alpine') || p.includes('trees') || p.includes('sunrise') || p.includes('landscape') || p.includes('river')) {
       theme = 'nature';
-      scene1 = { type: 'nature', name: 'Scene 1: Alpine Sunrise Flight', start: 0, end: 4 };
-      scene2 = { type: 'space', name: 'Scene 2: High Mountain Ridge', start: 4, end: 8 };
+      scene1 = { type: 'nature', name: 'Act 1: Alpine Sunrise Flight', start: 0, end: 60 };
+      scene2 = { type: 'space', name: 'Act 2: High Mountain Ridge', start: 60, end: 120 };
       title = 'THE HIGH PASS';
       subtitle = 'UNTOUCHED WILDERNESS IN 4K';
       lut = 'golden-hour';
@@ -3143,8 +3158,8 @@
     // 10. Matrix / Hack / Code / Computer
     } else if (p.includes('matrix') || p.includes('code') || p.includes('hack') || p.includes('terminal') || p.includes('data') || p.includes('mainframe')) {
       theme = 'matrix';
-      scene1 = { type: 'matrix', name: 'Scene 1: Cascading Data Stream', start: 0, end: 4 };
-      scene2 = { type: 'grid', name: 'Scene 2: Core Mainframe Breach', start: 4, end: 8 };
+      scene1 = { type: 'matrix', name: 'Act 1: Cascading Data Stream', start: 0, end: 60 };
+      scene2 = { type: 'grid', name: 'Act 2: Core Mainframe Breach', start: 60, end: 120 };
       title = 'CORE BREACH';
       subtitle = 'DATA ENCRYPTION COMPROMISED';
       lut = 'cyberpunk';
@@ -3159,8 +3174,8 @@
     // 11. Car Racing / Pursuit / Chase / Highway
     } else if (p.includes('car') || p.includes('race') || p.includes('racing') || p.includes('chase') || p.includes('highway') || p.includes('speed') || p.includes('drift')) {
       theme = 'synthwave';
-      scene1 = { type: 'synthwave', name: 'Scene 1: High Speed Highway Pursuit', start: 0, end: 4 };
-      scene2 = { type: 'grid', name: 'Scene 2: Turbo Boost Acceleration', start: 4, end: 8 };
+      scene1 = { type: 'synthwave', name: 'Act 1: High Speed Highway Pursuit', start: 0, end: 60 };
+      scene2 = { type: 'grid', name: 'Act 2: Turbo Boost Acceleration', start: 60, end: 120 };
       title = 'MIDNIGHT PURSUIT';
       subtitle = 'RADAR LOCKED • MAXIMUM OVERDRIVE';
       lut = 'cyberpunk';
@@ -3175,10 +3190,10 @@
     // 12. ONLY if specifically asking for walking / pedestrians / crowd:
     } else if (p.includes('walk') || p.includes('walking') || p.includes('pedestrian') || p.includes('crowd') || p.includes('sidewalk') || p.includes('crosswalk') || p.includes('stroll')) {
       theme = 'people-walking';
-      scene1 = { type: 'people-walking', name: 'Scene 1: Real People Walking on City Street', start: 0, end: 4 };
-      scene2 = { type: 'city-street', name: 'Scene 2: City Street & Crosswalk Pedestrians', start: 4, end: 8 };
+      scene1 = { type: 'people-walking', name: 'Act 1: Real People Walking on City Street', start: 0, end: 60 };
+      scene2 = { type: 'city-street', name: 'Act 2: City Street & Crosswalk Pedestrians', start: 60, end: 120 };
       title = 'THE CITY WALKERS';
-      subtitle = 'LIVE-ACTION CINEMA • REAL PEOPLE WALKING';
+      subtitle = 'LIVE-ACTION CINEMA • 2-MINUTE FEATURE FILM';
       lut = 'teal-orange';
       soundtrack = 'lofi-chill';
       cameraMotion = 'pan-zoom';
@@ -3196,8 +3211,8 @@
       title = titleWords || 'CINEMATIC VISION';
       subtitle = `AI DIRECTED: "${raw.slice(0, 45)}"`;
       theme = 'cyberpunk';
-      scene1 = { type: 'cyberpunk', name: `Scene 1: ${title}`, start: 0, end: 4 };
-      scene2 = { type: 'space', name: 'Scene 2: Cinematic Climax', start: 4, end: 8 };
+      scene1 = { type: 'cyberpunk', name: `Act 1: ${title}`, start: 0, end: 60 };
+      scene2 = { type: 'space', name: 'Act 2: Cinematic Climax', start: 60, end: 120 };
       lut = 'teal-orange';
       soundtrack = 'epic-orchestral';
       cameraMotion = 'pan-zoom';
@@ -3386,7 +3401,7 @@
   // DISNEY+ STREAMING HUB & "MOVIES YOU'VE DONE" LIBRARY
   // =========================================================================
 
-  const STORAGE_KEY_MY_MOVIES = 'camara_my_movies_v1';
+  const STORAGE_KEY_MY_MOVIES = 'camara_my_movies_v2';
 
   const DEFAULT_MY_MOVIES = [
     {
@@ -3395,11 +3410,11 @@
       prompt: 'people walking in a city like a movie',
       theme: 'people-walking',
       genre: 'LIVE ACTION CINEMA',
-      duration: '0:30',
+      duration: '2:00',
       date: 'Today',
       scenes: [
-        { name: 'Scene 1: 5th Avenue Pedestrian Rush', dur: 15, theme: 'people-walking' },
-        { name: 'Scene 2: Golden Hour Street Crosswalk', dur: 15, theme: 'people-walking' }
+        { name: 'Act 1: 5th Avenue Pedestrian Rush', dur: 60, theme: 'people-walking' },
+        { name: 'Act 2: Golden Hour Street Crosswalk', dur: 60, theme: 'people-walking' }
       ],
       lut: 'teal-orange',
       soundtrack: 'lofi-chill',
@@ -3418,11 +3433,11 @@
       prompt: 'epic dragon flying over castle fantasy movie',
       theme: 'fantasy',
       genre: 'HIGH FANTASY',
-      duration: '0:30',
+      duration: '2:00',
       date: 'Yesterday',
       scenes: [
-        { name: 'Scene 1: Dragon Over the Citadel', dur: 15, theme: 'fantasy' },
-        { name: 'Scene 2: Ancient Towers in Flame', dur: 15, theme: 'fantasy' }
+        { name: 'Act 1: Dragon Over the Citadel', dur: 60, theme: 'fantasy' },
+        { name: 'Act 2: Ancient Towers in Flame', dur: 60, theme: 'fantasy' }
       ],
       lut: 'warm-vintage',
       soundtrack: 'epic-hybrid',
@@ -3441,11 +3456,11 @@
       prompt: 'cyberpunk rainy city neon skyscrapers night thriller',
       theme: 'cyberpunk',
       genre: 'SCI-FI THRILLER',
-      duration: '0:30',
+      duration: '2:00',
       date: '2 Days Ago',
       scenes: [
-        { name: 'Scene 1: Neon Downpour in Sector 7', dur: 15, theme: 'cyberpunk' },
-        { name: 'Scene 2: Hologram Alleyways', dur: 15, theme: 'cyberpunk' }
+        { name: 'Act 1: Neon Downpour in Sector 7', dur: 60, theme: 'cyberpunk' },
+        { name: 'Act 2: Hologram Alleyways', dur: 60, theme: 'cyberpunk' }
       ],
       lut: 'cyber-neon',
       soundtrack: 'synthwave-80s',
@@ -3464,11 +3479,11 @@
       prompt: 'samurai warrior with katana in falling autumn leaves',
       theme: 'samurai',
       genre: 'MARTIAL LEGEND',
-      duration: '0:30',
+      duration: '2:00',
       date: '3 Days Ago',
       scenes: [
-        { name: 'Scene 1: Duel at the Temple Gates', dur: 15, theme: 'samurai' },
-        { name: 'Scene 2: Cherry Petals in the Wind', dur: 15, theme: 'samurai' }
+        { name: 'Act 1: Duel at the Temple Gates', dur: 60, theme: 'samurai' },
+        { name: 'Act 2: Cherry Petals in the Wind', dur: 60, theme: 'samurai' }
       ],
       lut: 'bleach-bypass',
       soundtrack: 'orchestral-strings',
@@ -3490,11 +3505,11 @@
       prompt: 'epic space station orbiting glowing nebula starship',
       theme: 'space',
       genre: 'COSMIC SCI-FI',
-      duration: '0:30',
+      duration: '2:00',
       badge: 'POPULAR',
       scenes: [
-        { name: 'Scene 1: Approaching the Orion Gate', dur: 15, theme: 'space' },
-        { name: 'Scene 2: Quantum Jump at Dawn', dur: 15, theme: 'space' }
+        { name: 'Act 1: Approaching the Orion Gate', dur: 60, theme: 'space' },
+        { name: 'Act 2: Quantum Jump at Dawn', dur: 60, theme: 'space' }
       ],
       lut: 'deep-blue',
       soundtrack: 'deep-space',
@@ -3513,11 +3528,11 @@
       prompt: 'deep ocean bioluminescent coral submarine underwater mystery',
       theme: 'ocean',
       genre: 'NATURE CINEMA',
-      duration: '0:30',
+      duration: '2:00',
       badge: 'TRENDING #1',
       scenes: [
-        { name: 'Scene 1: Bioluminescent Reef Awakening', dur: 15, theme: 'ocean' },
-        { name: 'Scene 2: Descent into the Marianas', dur: 15, theme: 'ocean' }
+        { name: 'Act 1: Bioluminescent Reef Awakening', dur: 60, theme: 'ocean' },
+        { name: 'Act 2: Descent into the Marianas', dur: 60, theme: 'ocean' }
       ],
       lut: 'underwater',
       soundtrack: 'ambient-chill',
@@ -3536,11 +3551,11 @@
       prompt: 'fast sports car drifting city tunnel high speed movie action',
       theme: 'car-chase',
       genre: 'ACTION BLOCKBUSTER',
-      duration: '0:30',
+      duration: '2:00',
       badge: 'ACTION PICK',
       scenes: [
-        { name: 'Scene 1: Neon Underpass Drift', dur: 15, theme: 'car-chase' },
-        { name: 'Scene 2: High Speed Highway Escape', dur: 15, theme: 'car-chase' }
+        { name: 'Act 1: Neon Underpass Drift', dur: 60, theme: 'car-chase' },
+        { name: 'Act 2: High Speed Highway Escape', dur: 60, theme: 'car-chase' }
       ],
       lut: 'teal-orange',
       soundtrack: 'synthwave-80s',
@@ -3559,11 +3574,11 @@
       prompt: 'mars rover expedition red desert sandstorm sci-fi epic',
       theme: 'desert',
       genre: 'ADVENTURE',
-      duration: '0:30',
+      duration: '2:00',
       badge: 'NEW RELEASE',
       scenes: [
-        { name: 'Scene 1: Sandstorm over Olympus Mons', dur: 15, theme: 'desert' },
-        { name: 'Scene 2: Outpost Sunset on the Red Planet', dur: 15, theme: 'desert' }
+        { name: 'Act 1: Sandstorm over Olympus Mons', dur: 60, theme: 'desert' },
+        { name: 'Act 2: Outpost Sunset on the Red Planet', dur: 60, theme: 'desert' }
       ],
       lut: 'warm-vintage',
       soundtrack: 'epic-hybrid',
@@ -3620,10 +3635,16 @@
 
   function getMyMoviesList() {
     try {
-      const stored = localStorage.getItem(STORAGE_KEY_MY_MOVIES);
+      const stored = localStorage.getItem(STORAGE_KEY_MY_MOVIES) || localStorage.getItem('camara_my_movies_v1');
       if (stored) {
         const parsed = JSON.parse(stored);
         if (Array.isArray(parsed) && parsed.length > 0) {
+          parsed.forEach(m => {
+            m.duration = '2:00';
+            if (m.scenes) {
+              m.scenes.forEach(sc => { sc.dur = 60; });
+            }
+          });
           return parsed;
         }
       }
@@ -3650,11 +3671,11 @@
         prompt: cfg.prompt || cfg.title,
         theme: themeKey,
         genre: getGenreLabel(themeKey),
-        duration: '0:30',
+        duration: '2:00',
         date: 'Just Now',
         scenes: cfg.scenes || [
-          { name: 'Scene 1: ' + cfg.title, dur: 15, theme: themeKey },
-          { name: 'Scene 2: Cinematic Climax', dur: 15, theme: themeKey }
+          { name: 'Act 1: ' + cfg.title, dur: 60, theme: themeKey },
+          { name: 'Act 2: Cinematic Climax', dur: 60, theme: themeKey }
         ],
         lut: cfg.lut || 'teal-orange',
         soundtrack: cfg.soundtrack || 'lofi-chill',
@@ -4745,8 +4766,8 @@ Would you like me to direct and load this movie onto your studio screen right no
 
     const cfg = picConfigs[picKey] || picConfigs['cyberpunk'];
     state.activeScenes = [
-      { id: 1, type: picKey, name: cfg.name1, start: 0, end: 4 },
-      { id: 2, type: picKey === 'space' ? 'singularity' : (picKey === 'samurai' ? 'samurai-climax' : picKey), name: cfg.name2, start: 4, end: 8 }
+      { id: 1, type: picKey, name: cfg.name1, start: 0, end: 60 },
+      { id: 2, type: picKey === 'space' ? 'singularity' : (picKey === 'samurai' ? 'samurai-climax' : picKey), name: cfg.name2, start: 60, end: 120 }
     ];
     state.titleText = cfg.title;
     state.subtitleText = cfg.sub;
@@ -4782,7 +4803,7 @@ Would you like me to direct and load this movie onto your studio screen right no
       img.onload = () => {
         userUploadedImg = img;
         state.activeScenes = [
-          { id: 1, type: 'user-photo', name: 'Scene 1: My Photo Animation', start: 0, end: 8 }
+          { id: 1, type: 'user-photo', name: 'Scene 1: My Photo Animation', start: 0, end: 120 }
         ];
         state.titleText = 'MY CINEMATIC MOMENT';
         state.subtitleText = 'ANIMATED WITH CAMARA';

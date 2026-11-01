@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles/main.css?v=12.0">
+  <link rel="stylesheet" href="styles/main.css?v=13.0">
 </head>
 <body class="bg-dark text-light antialiased">
   
@@ -143,7 +143,7 @@
         <div class="studio-project-meta">
           <div class="rec-indicator" id="rec-dot"></div>
           <input type="text" id="project-title" class="project-title-input" value="Untitled Cinematic Sci-Fi Project" title="Click to rename project">
-          <span class="project-duration" id="timeline-duration-display">00:08.00 / 00:08.00</span>
+          <span class="project-duration" id="timeline-duration-display">00:00.00 / 02:00.00 (2 Min Film)</span>
         </div>
 
         <div class="toolbar-center-controls">
@@ -508,7 +508,7 @@
                 <button class="btn btn-xs btn-outline" id="upload-pic-btn" title="Optionally put in any photo from your computer to animate it">
                   📷 Put In A Picture (Optional)
                 </button>
-                <span class="timecode-readout text-muted" id="total-time-readout">00:08.00</span>
+                <span class="timecode-readout text-muted" id="total-time-readout">02:00.00</span>
                 <button class="transport-btn" id="fullscreen-btn" title="Fullscreen Preview">
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"></path>
@@ -556,13 +556,13 @@
                 <div class="track-lane" id="video-track-lane">
                   <div class="track-clip clip-video" id="clip-scene-1" style="width: 50%;">
                     <div class="clip-thumb thumb-space"></div>
-                    <span class="clip-name">Scene 1: Nebula Drift</span>
-                    <span class="clip-dur">0.0s - 4.0s</span>
+                    <span class="clip-name">Act 1: Nebula Drift</span>
+                    <span class="clip-dur">0:00 - 1:00 (Act 1)</span>
                   </div>
                   <div class="track-clip clip-video clip-secondary" id="clip-scene-2" style="width: 50%;">
                     <div class="clip-thumb thumb-cyber"></div>
-                    <span class="clip-name">Scene 2: Neon Megacity</span>
-                    <span class="clip-dur">4.0s - 8.0s</span>
+                    <span class="clip-name">Act 2: Neon Megacity</span>
+                    <span class="clip-dur">1:00 - 2:00 (Act 2)</span>
                   </div>
                 </div>
               </div>
@@ -732,6 +732,14 @@
         </p>
 
         <div class="export-settings-box">
+          <div class="setting-item">
+            <label>Movie Length:</label>
+            <select id="export-length-select" class="form-select">
+              <option value="120" selected>2 Minutes (Full Film - 120s)</option>
+              <option value="60">1 Minute (Standard - 60s)</option>
+              <option value="30">30 Seconds (Trailer / Teaser)</option>
+            </select>
+          </div>
           <div class="setting-item">
             <label>Format:</label>
             <div class="badge-format">WebM Video (Chrome, Firefox, Edge, Safari 16+)</div>
@@ -1280,8 +1288,8 @@
   </div>
 
   <!-- Scripts with cache busters -->
-  <script src="scripts/scenes.js?v=12.0"></script>
-  <script src="scripts/templates.js?v=12.0"></script>
-  <script src="scripts/app.js?v=12.0"></script>
+  <script src="scripts/scenes.js?v=13.0"></script>
+  <script src="scripts/templates.js?v=13.0"></script>
+  <script src="scripts/app.js?v=13.0"></script>
 </body>
 </html>

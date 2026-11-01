@@ -21,8 +21,8 @@ const CAMARA_TEMPLATES = {
     cinemaBars: true,
     soundtrack: 'ambient-space',
     scenes: [
-      { type: 'space', name: 'Scene 1: Nebula Drift', start: 0, end: 4 },
-      { type: 'singularity', name: 'Scene 2: Event Horizon', start: 4, end: 8 }
+      { type: 'space', name: 'Act 1: Nebula Drift', start: 0, end: 60 },
+      { type: 'singularity', name: 'Act 2: Event Horizon', start: 60, end: 120 }
     ],
     prompt: 'Deep space nebula with cosmic dust filaments, star clusters, and massive violet accretion disk'
   },
@@ -44,8 +44,8 @@ const CAMARA_TEMPLATES = {
     cinemaBars: true,
     soundtrack: 'cyber-synthwave',
     scenes: [
-      { type: 'cyberpunk', name: 'Scene 1: Neon Megacity', start: 0, end: 4 },
-      { type: 'grid', name: 'Scene 2: High Speed Tunnel', start: 4, end: 8 }
+      { type: 'cyberpunk', name: 'Act 1: Neon Megacity', start: 0, end: 60 },
+      { type: 'grid', name: 'Act 2: High Speed Tunnel', start: 60, end: 120 }
     ],
     prompt: 'Rainy cyberpunk metropolis with glowing pink and cyan neon signs, soaring skyscrapers, reflections'
   },
@@ -67,8 +67,8 @@ const CAMARA_TEMPLATES = {
     cinemaBars: false,
     soundtrack: 'cyber-synthwave',
     scenes: [
-      { type: 'synthwave', name: 'Scene 1: Wireframe Grid', start: 0, end: 4 },
-      { type: 'space', name: 'Scene 2: Horizon Sun', start: 4, end: 8 }
+      { type: 'synthwave', name: 'Act 1: Wireframe Grid', start: 0, end: 60 },
+      { type: 'space', name: 'Act 2: Horizon Sun', start: 60, end: 120 }
     ],
     prompt: '3D retro synthwave neon wireframe perspective grid with glowing wireframe mountains and setting sun'
   },
@@ -90,8 +90,8 @@ const CAMARA_TEMPLATES = {
     cinemaBars: true,
     soundtrack: 'epic-orchestral',
     scenes: [
-      { type: 'nature', name: 'Scene 1: Ridge Sunrise', start: 0, end: 4 },
-      { type: 'space', name: 'Scene 2: Golden Mist', start: 4, end: 8 }
+      { type: 'nature', name: 'Act 1: Ridge Sunrise', start: 0, end: 60 },
+      { type: 'space', name: 'Act 2: Golden Mist', start: 60, end: 120 }
     ],
     prompt: 'Golden hour drone shot flying over majestic misty pine covered alpine peaks with god rays'
   },
@@ -113,8 +113,8 @@ const CAMARA_TEMPLATES = {
     cinemaBars: true,
     soundtrack: 'cyber-synthwave',
     scenes: [
-      { type: 'matrix', name: 'Scene 1: Digital Stream', start: 0, end: 4 },
-      { type: 'grid', name: 'Scene 2: Mainframe Breach', start: 4, end: 8 }
+      { type: 'matrix', name: 'Act 1: Digital Stream', start: 0, end: 60 },
+      { type: 'grid', name: 'Act 2: Mainframe Breach', start: 60, end: 120 }
     ],
     prompt: 'Cascading digital data rain streams in dark void with green phosphorescent characters'
   }
